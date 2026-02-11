@@ -317,113 +317,14 @@ function golden_template_scripts() {
 		golden_template_get_asset_version( 'blocks/hero-section/hero-section.css' )
 	);
 	
-	// 3. About block styles
+	// 2. Hero section styles - Loads from blocks folder where it compiles
 	wp_enqueue_style(
-		'golden-template-about',
-		GOLDEN_TEMPLATE_THEME_URI . '/blocks/about/about.css',
-		array( 'golden-template-main' ),
-		golden_template_get_asset_version( 'blocks/about/about.css' )
+		'golden-template-hero-section',
+		GOLDEN_TEMPLATE_THEME_URI . '/blocks/hero-section/hero-section.css',
+		array( 'golden-template-main' ), // Depends on main.css, loads after it
+		golden_template_get_asset_version( 'blocks/hero-section/hero-section.css' )
 	);
-
-	// 4. Title Block styles
-	wp_enqueue_style(
-		'golden-template-title-block',
-		GOLDEN_TEMPLATE_THEME_URI . '/blocks/title-block/title-block.css',
-		array( 'golden-template-main' ),
-		golden_template_get_asset_version( 'blocks/title-block/title-block.css' )
-	);
-
-	// 6. Line Block styles
-	wp_enqueue_style(
-		'golden-template-line-block',
-		GOLDEN_TEMPLATE_THEME_URI . '/blocks/line-block/line-block.css',
-		array( 'golden-template-main' ),
-		golden_template_get_asset_version( 'blocks/line-block/line-block.css' )
-	);
-
-	// 7. Featured Section styles
-	wp_enqueue_style(
-		'golden-template-featured-section',
-		GOLDEN_TEMPLATE_THEME_URI . '/blocks/featured-section/featured-section.css',
-		array( 'golden-template-main' ),
-		filemtime( GOLDEN_TEMPLATE_THEME_DIR . '/blocks/featured-section/featured-section.css' )
-	);
-
-	// 8. Milestones
-	wp_enqueue_style(
-		'golden-template-milestones',
-		GOLDEN_TEMPLATE_THEME_URI . '/blocks/milestones/milestones.css',
-		array( 'golden-template-main' ),
-		filemtime( GOLDEN_TEMPLATE_THEME_DIR . '/blocks/milestones/milestones.css' )
-	);
-
-	wp_enqueue_script(
-		'golden-template-milestones',
-		GOLDEN_TEMPLATE_THEME_URI . '/blocks/milestones/milestones.js',
-		array(),
-		filemtime( GOLDEN_TEMPLATE_THEME_DIR . '/blocks/milestones/milestones.js' ),
-		true
-	);
-
-	// 9. Accordion
-	wp_enqueue_style(
-		'golden-template-accordion',
-		GOLDEN_TEMPLATE_THEME_URI . '/blocks/accordion/accordion.css',
-		array( 'golden-template-main' ),
-		filemtime( GOLDEN_TEMPLATE_THEME_DIR . '/blocks/accordion/accordion.css' )
-	);
-
-	wp_enqueue_script(
-		'golden-template-accordion',
-		GOLDEN_TEMPLATE_THEME_URI . '/blocks/accordion/accordion.js',
-		array( 'jquery' ),
-		filemtime(GOLDEN_TEMPLATE_THEME_DIR . '/blocks/accordion/accordion.js'),
-		true
-	);
-
-	// 10. Map Block
-	if ( file_exists( GOLDEN_TEMPLATE_THEME_DIR . '/blocks/map-block/map-block.css' ) ) {
-		wp_enqueue_style(
-			'golden-template-map-block',
-			GOLDEN_TEMPLATE_THEME_URI . '/blocks/map-block/map-block.css',
-			array( 'golden-template-main' ),
-			filemtime( GOLDEN_TEMPLATE_THEME_DIR . '/blocks/map-block/map-block.css' )
-		);
-	}
-	if ( file_exists( GOLDEN_TEMPLATE_THEME_DIR . '/blocks/map-block/map-block.js' ) ) {
-		wp_enqueue_script(
-			'golden-template-map-block',
-			GOLDEN_TEMPLATE_THEME_URI . '/blocks/map-block/map-block.js',
-			array( 'jquery' ),
-			filemtime( GOLDEN_TEMPLATE_THEME_DIR . '/blocks/map-block/map-block.js' ),
-			true
-		);
-	}
-
-	// 11. Image Block
-	wp_enqueue_style(
-		'golden-template-image-block',
-		GOLDEN_TEMPLATE_THEME_URI . '/blocks/image-block/image-block.css',
-		array( 'golden-template-main' ),
-		filemtime( GOLDEN_TEMPLATE_THEME_DIR . '/blocks/image-block/image-block.css' )
-	);
-
-	// 12. Filter Cards
-	wp_enqueue_style(
-		'golden-template-filter-cards',
-		GOLDEN_TEMPLATE_THEME_URI . '/blocks/filter-cards/filter-cards.css',
-		array( 'golden-template-main' ),
-		filemtime( GOLDEN_TEMPLATE_THEME_DIR . '/blocks/filter-cards/filter-cards.css' )
-	);
-
-	wp_enqueue_script(
-		'golden-template-filter-cards',
-		GOLDEN_TEMPLATE_THEME_URI . '/blocks/filter-cards/filter-cards.js',
-		array(),
-		filemtime( GOLDEN_TEMPLATE_THEME_DIR . '/blocks/filter-cards/filter-cards.js' ),
-		true
-	);
-
+	
 	// Slick Carousel
     wp_enqueue_style(
         'slick-carousel',
@@ -444,32 +345,6 @@ function golden_template_scripts() {
         '1.8.1',
         true
     );
-
-    // Featured Section Script
-    wp_enqueue_script(
-        'golden-template-featured-section-script',
-        GOLDEN_TEMPLATE_THEME_URI . '/blocks/featured-section/featured-section.js',
-        array('jquery', 'slick-carousel'),
-        golden_template_get_asset_version( 'blocks/featured-section/featured-section.js' ),
-        true
-    );
-
-	// 11. Service Slider styles
-	wp_enqueue_style(
-		'golden-template-service-slider',
-		GOLDEN_TEMPLATE_THEME_URI . '/blocks/service-slider/service-slider.css',
-		array( 'golden-template-main' ),
-		golden_template_get_asset_version( 'blocks/service-slider/service-slider.css' )
-	);
-
-	// Service Slider Script
-	wp_enqueue_script(
-		'golden-template-service-slider-script',
-		GOLDEN_TEMPLATE_THEME_URI . '/blocks/service-slider/service-slider.js',
-		array(),
-		golden_template_get_asset_version( 'blocks/service-slider/service-slider.js' ),
-		true
-	);
 
 	// 12. Projects Listing styles (only on archive pages)
 	if ( is_post_type_archive( 'projects' ) || is_page_template( 'archive-projects.php' ) ) {
@@ -632,9 +507,6 @@ function golden_template_uses_acf_components() {
 	if ( has_block( 'acf/hero-section', $content ) ) {
 		return true;
 	}
-	if ( has_block( 'acf/about-section', $content ) ) {
-		return true;
-	}
 	return false;
 }
 
@@ -763,18 +635,6 @@ require_once GOLDEN_TEMPLATE_THEME_DIR . '/inc/blocks/block-registration.php';
  * Load individual block field configurations.
  */
 require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/hero-section/fields.php';
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/about/fields.php';
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/title-block/fields.php';
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/line-block/fields.php';
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/featured-section/fields.php';
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/service-slider/fields.php';
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/milestones/fields.php';
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/accordion/fields.php';
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/map-block/fields.php';
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/image-block/fields.php';
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/location-cards/fields.php';
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/filter-cards/fields.php';
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/rich-text-editor/fields.php';
 /**
  * Custom Post Types
  */

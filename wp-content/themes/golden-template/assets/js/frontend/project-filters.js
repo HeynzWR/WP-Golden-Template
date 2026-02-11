@@ -1,7 +1,7 @@
 /**
  * Project Filtering JavaScript - Optimized
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 (function ($) {
@@ -898,6 +898,6 @@
     });
 
     // Make ProjectFilters available globally for debugging
-    window.JLBPartnersProjectFilters = ProjectFilters;
+    window.GoldenTemplateProjectFilters = ProjectFilters;
 
 })(jQuery);

@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: JLB Partners Core Loader
- * Description: Loads the JLB Partners Core MU plugin.
+ * Plugin Name: Golden Template Core Loader
+ * Description: Loads the Golden Template Core MU plugin.
  * Version: 1.0.0
- * Author: JLB Partners
+ * Author: Golden Template
  *
  * @package GoldenTemplate_Core
  */

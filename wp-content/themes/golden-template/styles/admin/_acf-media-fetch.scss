@@ -1,14 +1,14 @@
 /**
  * ACF Media Fetch - Modal and Button Styles
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 // ==========================================================================
 // Fetch Button Styles
 // ==========================================================================
 
-.jlbpartners-fetch-btn {
+.golden-template-fetch-btn {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -46,12 +46,12 @@
 		line-height: 1;
 
 		&-spin {
-			animation: jlbpartners-spin 1s linear infinite;
+			animation: golden-template-spin 1s linear infinite;
 		}
 	}
 }
 
-@keyframes jlbpartners-spin {
+@keyframes golden-template-spin {
 	from {
 		transform: rotate(0deg);
 	}
@@ -64,7 +64,7 @@
 // Modal Styles
 // ==========================================================================
 
-.jlbpartners-metadata-modal {
+.golden-template-metadata-modal {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -74,7 +74,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	animation: jlbpartners-modal-fade-in 0.2s ease;
+	animation: golden-template-modal-fade-in 0.2s ease;
 
 	// Modal Overlay
 	&__overlay {
@@ -101,7 +101,7 @@
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
-		animation: jlbpartners-modal-slide-up 0.3s ease;
+		animation: golden-template-modal-slide-up 0.3s ease;
 	}
 
 	// Modal Header
@@ -181,7 +181,7 @@
 	}
 }
 
-@keyframes jlbpartners-modal-fade-in {
+@keyframes golden-template-modal-fade-in {
 	from {
 		opacity: 0;
 	}
@@ -190,7 +190,7 @@
 	}
 }
 
-@keyframes jlbpartners-modal-slide-up {
+@keyframes golden-template-modal-slide-up {
 	from {
 		transform: translateY(20px);
 		opacity: 0;
@@ -205,7 +205,7 @@
 // Status Indicator
 // ==========================================================================
 
-.jlbpartners-metadata-status {
+.golden-template-metadata-status {
 	display: flex;
 	align-items: center;
 	gap: 12px;
@@ -236,7 +236,7 @@
 // Metadata Preview
 // ==========================================================================
 
-.jlbpartners-metadata-preview {
+.golden-template-metadata-preview {
 	background: #f9f9f9;
 	border: 1px solid #ddd;
 	border-radius: 6px;
@@ -264,7 +264,7 @@
 // Empty State
 // ==========================================================================
 
-.jlbpartners-metadata-empty {
+.golden-template-metadata-empty {
 	color: #50575e;
 	line-height: 1.6;
 
@@ -292,7 +292,7 @@
 // ==========================================================================
 
 @media (max-width: 768px) {
-	.jlbpartners-metadata-modal {
+	.golden-template-metadata-modal {
 		&__content {
 			width: 95%;
 			max-height: 90vh;
@@ -328,7 +328,7 @@
 		align-items: center;
 	}
 
-	.jlbpartners-fetch-btn {
+	.golden-template-fetch-btn {
 		flex-shrink: 0;
 	}
 }

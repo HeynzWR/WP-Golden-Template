@@ -46,10 +46,10 @@ wp-content/upgrade/
 # wp-content/plugins/
 # !wp-content/mu-plugins/
 
-# All themes except jlbpartners
+# All themes except golden-template
 # The new rules above handle this more generally.
 # wp-content/themes/*/
-# !wp-content/themes/jlbpartners/
+# !wp-content/themes/golden-template/
 
 # Rename script backups
 .backup_*/

@@ -1,7 +1,7 @@
 /**
- * JLB Partners Main Scripts
+ * Golden Template Main Scripts
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 (function($) {

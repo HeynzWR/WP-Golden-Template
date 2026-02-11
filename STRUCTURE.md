@@ -13,10 +13,10 @@ This is a WordPress-based project with a custom theme and MU (must-use) plugin. 
 ├── wp-admin/                    # WordPress core (not modified)
 ├── wp-content/                  # Custom code lives here
 │   ├── themes/
-│   │   └── jlbpartners/        # Main custom theme ⭐
+│   │   └── golden-template/        # Main custom theme ⭐
 │   ├── mu-plugins/
-│   │   ├── jlbpartners-core/   # Core functionality plugin ⭐
-│   │   └── jlbpartners-core-loader.php
+│   │   ├── golden-template-core/   # Core functionality plugin ⭐
+│   │   └── golden-template-core-loader.php
 │   ├── plugins/                # Third-party plugins
 │   └── uploads/                # Media files
 ├── wp-includes/                # WordPress core (not modified)
@@ -37,10 +37,10 @@ This is a WordPress-based project with a custom theme and MU (must-use) plugin. 
 
 ## Theme Structure
 
-### `wp-content/themes/jlbpartners/`
+### `wp-content/themes/golden-template/`
 
 ```
-jlbpartners/
+golden-template/
 ├── assets/                     # Theme assets
 │   ├── css/
 │   │   ├── admin/             # Backend styles
@@ -104,7 +104,7 @@ jlbpartners/
 
 #### `functions.php`
 The main theme file that:
-- Defines constants (`JLBPARTNERS_VERSION`, etc.)
+- Defines constants (`GOLDEN_TEMPLATE_VERSION`, etc.)
 - Loads all includes
 - Registers menus and theme support
 - Enqueues scripts and styles
@@ -117,7 +117,7 @@ Registers all ACF blocks. When you create a new block, you add it here:
 acf_register_block_type(
     array(
         'name'            => 'testimonial-card',
-        'title'           => __( 'Testimonial Card', 'jlbpartners' ),
+        'title'           => __( 'Testimonial Card', 'golden-template' ),
         'render_template' => get_template_directory() . '/blocks/testimonial-card/template.php',
         // ... more settings
     )
@@ -138,10 +138,10 @@ return array(
 
 ## MU Plugin Structure
 
-### `wp-content/mu-plugins/jlbpartners-core/`
+### `wp-content/mu-plugins/golden-template-core/`
 
 ```
-jlbpartners-core/
+golden-template-core/
 ├── assets/
 │   ├── css/
 │   │   └── admin.css          # Admin area styles
@@ -155,12 +155,12 @@ jlbpartners-core/
 │   ├── class-settings.php     # Settings page
 │   └── class-update-manager.php # Update management
 │
-└── jlbpartners-core.php       # Main plugin file
+└── golden-template-core.php       # Main plugin file
 ```
 
 ### MU Plugin Loader
 
-`wp-content/mu-plugins/jlbpartners-core-loader.php`
+`wp-content/mu-plugins/golden-template-core-loader.php`
 - Loads the main MU plugin
 - Must-use plugins don't support subdirectories, so we need this loader
 
@@ -185,7 +185,7 @@ blocks/testimonial-card/
  * Testimonial Card Block - ACF Fields
  */
 
-function jlbpartners_testimonial_card_fields() {
+function golden_template_testimonial_card_fields() {
     acf_add_local_field_group(
         array(
             'key'    => 'group_testimonial_card',
@@ -205,7 +205,7 @@ function jlbpartners_testimonial_card_fields() {
         )
     );
 }
-add_action( 'acf/init', 'jlbpartners_testimonial_card_fields' );
+add_action( 'acf/init', 'golden_template_testimonial_card_fields' );
 ```
 
 ### Template (`template.php`)
@@ -226,7 +226,7 @@ $class_name = 'testimonial-card';
 
 // Preview mode
 if ( $is_preview && empty( $quote ) ) {
-    jlbpartners_show_block_preview( 'testimonial-card', __( 'Testimonial Card Block', 'jlbpartners' ) );
+    golden_template_show_block_preview( 'testimonial-card', __( 'Testimonial Card Block', 'golden-template' ) );
     return;
 }
 
@@ -250,13 +250,13 @@ Assets are loaded conditionally based on what's being rendered:
 
 ```php
 // In functions.php
-function jlbpartners_scripts() {
+function golden_template_scripts() {
     // Always loaded
-    wp_enqueue_style( 'jlbpartners-main', ... );
+    wp_enqueue_style( 'golden-template-main', ... );
     
     // Conditionally loaded
     if ( is_singular( 'projects' ) ) {
-        wp_enqueue_style( 'jlbpartners-single-project', ... );
+        wp_enqueue_style( 'golden-template-single-project', ... );
     }
     
     // Block-specific (only when block is used)
@@ -313,9 +313,9 @@ assets/
 - Directories: `kebab-case/`
 
 ### PHP Code
-- Functions: `project_function_name()`
-- Classes: `Project_Class_Name`
-- Constants: `PROJECT_CONSTANT_NAME`
+- Functions: `golden_template_function_name()`
+- Classes: `GoldenTemplate_Class_Name`
+- Constants: `GOLDEN_TEMPLATE_CONSTANT_NAME`
 - Variables: `$snake_case`
 
 ### CSS
@@ -344,7 +344,7 @@ These should be in `.gitignore`:
 
 ## Development Workflow
 
-1. **Start development** in `wp-content/themes/jlbpartners/`
+1. **Start development** in `wp-content/themes/golden-template/`
 2. **Create blocks** in `blocks/` folder
 3. **Register blocks** in `inc/blocks/block-registration.php`
 4. **Allow blocks** in `inc/editor-customization.php`

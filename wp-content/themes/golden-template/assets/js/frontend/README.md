@@ -28,7 +28,7 @@ These files are loaded on the public website that visitors see. They do NOT affe
 
 ## Loaded by:
 
-- `functions.php` - Loads both scripts via `jlbpartners_scripts()`
+- `functions.php` - Loads both scripts via `golden_template_scripts()`
   - `header.js` - Loaded in footer, no dependencies
   - `main.js` - Loaded in footer, depends on jQuery
 

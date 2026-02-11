@@ -26,7 +26,7 @@ while ( have_posts() ) :
 				</header>
 				<div class="generic-page__body">
 					<div class="container">
-						<div class="jlb generic generic--default-page">
+						<div class="golden-template generic generic--default-page">
 							<?php
 								the_content();
 								// Display page links for paginated content.

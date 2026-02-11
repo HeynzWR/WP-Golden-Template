@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * JLB Partners Core Settings class.
+ * Golden Template Core Settings class.
  */
 class GoldenTemplate_Core_Settings {
 
@@ -37,7 +37,7 @@ class GoldenTemplate_Core_Settings {
 		add_action( 'wp_ajax_golden_template_upload_placeholder', array( $this, 'handle_placeholder_upload' ) );
 
 		// Register copyright shortcode.
-		add_shortcode( 'jlb_copyright', array( $this, 'copyright_shortcode' ) );
+		add_shortcode( 'golden_template_copyright', array( $this, 'copyright_shortcode' ) );
 	}
 
 	/**
@@ -45,8 +45,8 @@ class GoldenTemplate_Core_Settings {
 	 */
 	public function add_settings_page() {
 		add_menu_page(
-			__( 'JLB Partners', 'golden-template-core' ),
-			__( 'JLB Partners', 'golden-template-core' ),
+			__( 'Golden Template', 'golden-template-core' ),
+			__( 'Golden Template', 'golden-template-core' ),
 			'manage_options',
 			$this->page_slug,
 			array( $this, 'render_settings_page' ),
@@ -212,10 +212,10 @@ class GoldenTemplate_Core_Settings {
 		
 		// Add inline script to verify form submission.
 		$inline_js = "
-		console.log('JLB Partners Admin: Scripts loaded');
+		console.log('Golden Template Admin: Scripts loaded');
 		jQuery(document).ready(function($) {
-			console.log('JLB Partners Admin: jQuery ready');
-			console.log('JLB Partners Admin: Media uploader available:', typeof wp !== 'undefined' && typeof wp.media !== 'undefined');
+			console.log('Golden Template Admin: jQuery ready');
+			console.log('Golden Template Admin: Media uploader available:', typeof wp !== 'undefined' && typeof wp.media !== 'undefined');
 		});
 		";
 		wp_add_inline_script( 'golden-template-admin', $inline_js );
@@ -293,7 +293,7 @@ class GoldenTemplate_Core_Settings {
 	/**
 	 * Copyright shortcode handler.
 	 * 
-	 * Usage: [jlb_copyright format="desktop"] or [jlb_copyright format="mobile"]
+	 * Usage: [golden_template_copyright format="desktop"] or [golden_template_copyright format="mobile"]
 	 * 
 	 * @param array $atts Shortcode attributes.
 	 * @return string Copyright text with auto-updated year.
@@ -304,14 +304,14 @@ class GoldenTemplate_Core_Settings {
 				'format' => 'desktop', // 'desktop' or 'mobile'
 			),
 			$atts,
-			'jlb_copyright'
+			'golden_template_copyright'
 		);
 
 		$current_year = date( 'Y' );
 
 		// Format based on desktop or mobile.
 		if ( 'mobile' === $atts['format'] ) {
-			$copyright = '&copy; ' . $current_year . ' JLB Partners. <br>All rights reserved.';
+			$copyright = '&copy; ' . $current_year . ' Golden Template. <br>All rights reserved.';
 		} else {
 			// Desktop format (default).
 			$copyright = '&copy; Copyright ' . $current_year;

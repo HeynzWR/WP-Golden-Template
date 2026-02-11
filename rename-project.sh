@@ -3,8 +3,8 @@
 ################################################################################
 # WordPress Golden Template - Project Rename Script
 # 
-# This script renames all instances of the template project name throughout
-# the WordPress theme and mu-plugin files.
+# This script renames all instances of "Golden Template" throughout
+# the WordPress theme and mu-plugin files to your new project name.
 #
 # Usage: ./rename-project.sh <new-project-name> [--dry-run]
 #
@@ -23,14 +23,15 @@ BLUE='\033[0;34m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
-# Current project identifiers
-OLD_SLUG="jlbpartners"
-OLD_CONSTANT_PREFIX="JLBPARTNERS"
-OLD_FUNCTION_PREFIX="jlbpartners"
-OLD_CLASS_PREFIX="JLBPartners"
-OLD_TEXT_DOMAIN="jlbpartners"
-OLD_MU_PLUGIN_SLUG="jlbpartners-core"
-OLD_MU_PLUGIN_CLASS="JLBPartners_Core"
+# Current project identifiers (The "Template" name)
+OLD_NAME="Golden Template"
+OLD_SLUG="golden-template"
+OLD_CONSTANT_PREFIX="GOLDEN_TEMPLATE"
+OLD_FUNCTION_PREFIX="golden_template"
+OLD_CLASS_PREFIX="GoldenTemplate"
+OLD_TEXT_DOMAIN="golden-template"
+OLD_MU_PLUGIN_SLUG="golden-template-core"
+OLD_MU_PLUGIN_CLASS="GoldenTemplate_Core"
 
 # Script variables
 DRY_RUN=false
@@ -104,6 +105,9 @@ validate_project_name() {
 generate_variants() {
     local base_name=$1
     
+    # Readable Name (title case with spaces)
+    NEW_NAME=$(echo "$base_name" | tr '-' ' ' | tr '_' ' ' | awk '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}1')
+
     # Slug: lowercase with hyphens (my-project)
     NEW_SLUG=$(echo "$base_name" | tr '[:upper:]' '[:lower:]' | tr '_' '-')
     
@@ -114,7 +118,6 @@ generate_variants() {
     NEW_FUNCTION_PREFIX=$(echo "$base_name" | tr '[:upper:]' '[:lower:]' | tr '-' '_')
     
     # Class prefix: PascalCase (MyProject)
-    # Use awk or sed for PascalCase conversion
     NEW_CLASS_PREFIX=$(echo "$base_name" | awk 'BEGIN{FS="-|_"}{for(i=1;i<=NF;i++){$i=toupper(substr($i,1,1)) substr($i,2)}}1' OFS='')
     
     # Text domain: lowercase with hyphens (my-project)
@@ -130,6 +133,7 @@ generate_variants() {
 display_preview() {
     echo -e "\n${CYAN}Preview of changes:${NC}"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    printf "%-25s → %s\n" "Display Name:" "$OLD_NAME → $NEW_NAME"
     printf "%-25s → %s\n" "Slug:" "$OLD_SLUG → $NEW_SLUG"
     printf "%-25s → %s\n" "Constant Prefix:" "$OLD_CONSTANT_PREFIX → $NEW_CONSTANT_PREFIX"
     printf "%-25s → %s\n" "Function Prefix:" "$OLD_FUNCTION_PREFIX → $NEW_FUNCTION_PREFIX"
@@ -193,10 +197,15 @@ update_file_content() {
     local temp_file="${file}.tmp"
     
     # Perform replacements
-    sed -e "s/${OLD_CLASS_PREFIX}_Core/${NEW_MU_PLUGIN_CLASS}/g" \
+    # Using LC_ALL=C to avoid "illegal byte sequence" errors with sed on macOS
+    export LC_ALL=C
+    export LANG=C
+
+    sed -e "s/${OLD_NAME}/${NEW_NAME}/g" \
+        -e "s/${OLD_MU_PLUGIN_CLASS}/${NEW_MU_PLUGIN_CLASS}/g" \
         -e "s/${OLD_CLASS_PREFIX}/${NEW_CLASS_PREFIX}/g" \
         -e "s/${OLD_CONSTANT_PREFIX}/${NEW_CONSTANT_PREFIX}/g" \
-        -e "s/${OLD_FUNCTION_PREFIX}_/${NEW_FUNCTION_PREFIX}_/g" \
+        -e "s/${OLD_FUNCTION_PREFIX}/${NEW_FUNCTION_PREFIX}/g" \
         -e "s/'${OLD_TEXT_DOMAIN}'/'${NEW_TEXT_DOMAIN}'/g" \
         -e "s/\"${OLD_TEXT_DOMAIN}\"/\"${NEW_TEXT_DOMAIN}\"/g" \
         -e "s/${OLD_MU_PLUGIN_SLUG}/${NEW_MU_PLUGIN_SLUG}/g" \
@@ -215,11 +224,14 @@ update_css_file() {
     fi
     
     local temp_file="${file}.tmp"
+    export LC_ALL=C
+    export LANG=C
     
     # Update CSS class prefixes and other references
     sed -e "s/\.${OLD_SLUG}/\.${NEW_SLUG}/g" \
         -e "s/#${OLD_SLUG}/#${NEW_SLUG}/g" \
         -e "s/${OLD_SLUG}-/${NEW_SLUG}-/g" \
+        -e "s/${OLD_FUNCTION_PREFIX}/${NEW_FUNCTION_PREFIX}/g" \
         "$file" > "$temp_file"
     
     mv "$temp_file" "$file"
@@ -233,12 +245,15 @@ update_js_file() {
     fi
     
     local temp_file="${file}.tmp"
+    export LC_ALL=C
+    export LANG=C
     
     # Update JavaScript object names and references
     sed -e "s/${OLD_FUNCTION_PREFIX}/${NEW_FUNCTION_PREFIX}/g" \
         -e "s/'${OLD_SLUG}'/'${NEW_SLUG}'/g" \
         -e "s/\"${OLD_SLUG}\"/\"${NEW_SLUG}\"/g" \
         -e "s/${OLD_SLUG}-/${NEW_SLUG}-/g" \
+        -e "s/${OLD_CONSTANT_PREFIX}/${NEW_CONSTANT_PREFIX}/g" \
         "$file" > "$temp_file"
     
     mv "$temp_file" "$file"
@@ -372,9 +387,12 @@ update_style_css() {
     
     # Update theme header fields
     local temp_file="${style_file}.tmp"
-    sed -e "s/Theme Name: JLB Partners/Theme Name: ${NEW_CLASS_PREFIX}/g" \
+    export LC_ALL=C
+    export LANG=C
+
+    sed -e "s/Theme Name: ${OLD_NAME}/Theme Name: ${NEW_NAME}/g" \
         -e "s/Text Domain: ${OLD_TEXT_DOMAIN}/Text Domain: ${NEW_TEXT_DOMAIN}/g" \
-        -e "s/jlbpartners/${NEW_SLUG}/g" \
+        -e "s/${OLD_SLUG}/${NEW_SLUG}/g" \
         "$style_file" > "$temp_file"
     
     mv "$temp_file" "$style_file"

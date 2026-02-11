@@ -36,7 +36,7 @@
         background-color: var(--primary);
     }
 }
-.jlb.image-gallery {
+.golden-template.image-gallery {
     .row {
         display: flex;
         flex-wrap: wrap;
@@ -64,7 +64,7 @@
         }
     }
 }
-.jlb.hero-preview {
+.golden-template.hero-preview {
     position: relative;
     min-height: rem(440);
     padding: rem(32);
@@ -114,7 +114,7 @@
         }
     }
 }
-.jlb.tag-list {
+.golden-template.tag-list {
     display: flex;
     flex-wrap: wrap;
     gap: rem(4);

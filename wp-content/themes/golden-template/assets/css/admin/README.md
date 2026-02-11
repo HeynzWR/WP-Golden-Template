@@ -9,7 +9,7 @@ This folder contains CSS files used in the WordPress Admin area (backend).
 
 ## Usage:
 
-These files are loaded ONLY when editing pages/posts in the WordPress block editor. They do NOT affect the frontend website or the JLB Partners Settings page.
+These files are loaded ONLY when editing pages/posts in the WordPress block editor. They do NOT affect the frontend website or the Golden Template Settings page.
 
 ## Loaded by:
 

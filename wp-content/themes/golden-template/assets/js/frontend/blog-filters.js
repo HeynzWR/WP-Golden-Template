@@ -1,7 +1,7 @@
 /**
  * Blog Filtering JavaScript
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 (function ($) {
@@ -205,6 +205,6 @@
     });
 
     // Make BlogFilters available globally for debugging
-    window.JLBPartnersBlogFilters = BlogFilters;
+    window.GoldenTemplateBlogFilters = BlogFilters;
 
 })(jQuery);

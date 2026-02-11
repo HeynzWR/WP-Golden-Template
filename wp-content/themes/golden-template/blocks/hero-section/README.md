@@ -142,5 +142,5 @@ Potential additions for future versions:
 
 **Version:** 2.0  
 **Last Updated:** October 2025  
-**Maintained By:** JLB Partners Theme
+**Maintained By:** Golden Template Theme
 

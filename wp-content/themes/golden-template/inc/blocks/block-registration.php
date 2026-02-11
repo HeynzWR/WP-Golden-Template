@@ -2,7 +2,7 @@
 /**
  * Block Registration
  *
- * Registers all ACF Blocks for the JLB Partners theme.
+ * Registers all ACF Blocks for the Golden Template theme.
  *
  * @package GoldenTemplate
  */
@@ -218,7 +218,7 @@ function golden_template_block_categories( $categories ) {
 		array(
 			array(
 				'slug'  => 'golden-template-blocks',
-				'title' => __( 'JLB Partners Components', 'golden-template' ),
+				'title' => __( 'Golden Template Components', 'golden-template' ),
 				'icon'  => 'layout',
 			),
 		),

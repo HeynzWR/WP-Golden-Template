@@ -1,8 +1,8 @@
-# ✅ JLB Partners Complete Setup Guide
+# ✅ Golden Template Complete Setup Guide
 
 ## 🎯 **CRITICAL: ACF Pro Required**
 
-Your JLB Partners theme uses a **Must-Use Plugin** called **"JLB Partners Core Loader"** that manages dependencies. This plugin **REQUIRES** Advanced Custom Fields PRO to be active.
+Your Golden Template theme uses a **Must-Use Plugin** called **"Golden Template Core Loader"** that manages dependencies. This plugin **REQUIRES** Advanced Custom Fields PRO to be active.
 
 ---
 
@@ -17,7 +17,7 @@ Your JLB Partners theme uses a **Must-Use Plugin** called **"JLB Partners Core L
 
 **Status Check:**
 - ✅ If ACF Pro is active: Error notice disappears
-- ❌ If not active: Red error notice from "JLB Partners Core Loader"
+- ❌ If not active: Red error notice from "Golden Template Core Loader"
 
 ---
 
@@ -30,13 +30,13 @@ After activating ACF Pro:
 3. **Click "+" button**
 4. **Look for these blocks:**
 
-#### **In "JLB Partners Components" Category:**
+#### **In "Golden Template Components" Category:**
 - **"Hero Section"** - Full ACF-powered hero block
 - **"Simple Hero (No ACF)"** - Fallback that always works
 
 #### **What You Should See:**
 ```
-JLB Partners Components
+Golden Template Components
 ├── Hero Section (with ACF fields)
 └── Simple Hero (No ACF) (fallback)
 ```
@@ -59,8 +59,8 @@ Your theme uses a **component-based architecture**:
 
 ## 🔧 **How It Works**
 
-### **1. JLB Partners Core Loader (Must-Use Plugin)**
-- **Location**: `/wp-content/mu-plugins/jlbpartners-core-loader.php`
+### **1. Golden Template Core Loader (Must-Use Plugin)**
+- **Location**: `/wp-content/mu-plugins/golden-template-core-loader.php`
 - **Purpose**: Manages theme dependencies
 - **Checks**: ACF Pro, Yoast SEO
 - **Shows**: Error notices if required plugins are missing
@@ -88,7 +88,7 @@ Your theme uses a **component-based architecture**:
 
 1. **Go to Pages > Add New**
 2. **Click "+" button**
-3. **Search for "hero" or browse "JLB Partners Components"**
+3. **Search for "hero" or browse "Golden Template Components"**
 4. **Select "Hero Section"**
 5. **Fill in the fields:**
    - **Background Image**: Upload an image
@@ -104,7 +104,7 @@ Your theme uses a **component-based architecture**:
 ### **Issue: No blocks showing**
 **Solution:**
 1. Check if ACF Pro is activated
-2. Look for red error notice from "JLB Partners Core Loader"
+2. Look for red error notice from "Golden Template Core Loader"
 3. Activate ACF Pro in Plugins page
 
 ### **Issue: "Simple Hero (No ACF)" shows but not "Hero Section"**
@@ -140,7 +140,7 @@ The debug notice shows:
 ### **Expected Debug Output (When Working):**
 
 ```
-🔍 JLB Partners Block Debug Status
+🔍 Golden Template Block Debug Status
 ┌─────────────────────────────┬──────────┐
 │ ACF Pro Functions           │ ✅ YES   │
 │ ACF Fields Functions        │ ✅ YES   │
@@ -150,7 +150,7 @@ The debug notice shows:
 │ Total Blocks                │ 50+      │
 └─────────────────────────────┴──────────┘
 
-Available Custom Blocks: acf/hero-section, jlbpartners/simple-hero
+Available Custom Blocks: acf/hero-section, golden-template/simple-hero
 ```
 
 ---
@@ -169,17 +169,17 @@ Available Custom Blocks: acf/hero-section, jlbpartners/simple-hero
 ## 📁 **File Locations**
 
 ### **Core Files:**
-- Must-Use Plugin: `/wp-content/mu-plugins/jlbpartners-core-loader.php`
-- Theme Functions: `/wp-content/themes/jlbpartners/functions.php`
-- Block Registration: `/wp-content/themes/jlbpartners/inc/blocks/block-registration.php`
+- Must-Use Plugin: `/wp-content/mu-plugins/golden-template-core-loader.php`
+- Theme Functions: `/wp-content/themes/golden-template/functions.php`
+- Block Registration: `/wp-content/themes/golden-template/inc/blocks/block-registration.php`
 
 ### **Hero Section Component:**
-- Fields: `/wp-content/themes/jlbpartners/blocks/hero-section/fields.php`
-- Template: `/wp-content/themes/jlbpartners/blocks/hero-section/template.php`
-- Styles: `/wp-content/themes/jlbpartners/blocks/hero-section/hero-section.scss`
+- Fields: `/wp-content/themes/golden-template/blocks/hero-section/fields.php`
+- Template: `/wp-content/themes/golden-template/blocks/hero-section/template.php`
+- Styles: `/wp-content/themes/golden-template/blocks/hero-section/hero-section.scss`
 
 ### **Debug Files (Temporary):**
-- Debug Script: `/wp-content/themes/jlbpartners/debug-blocks.php`
+- Debug Script: `/wp-content/themes/golden-template/debug-blocks.php`
 - (Remove after testing)
 
 ---
@@ -189,7 +189,7 @@ Available Custom Blocks: acf/hero-section, jlbpartners/simple-hero
 You'll know everything is working when:
 
 1. ✅ No red error notices in WordPress admin
-2. ✅ "JLB Partners Components" category appears in block inserter
+2. ✅ "Golden Template Components" category appears in block inserter
 3. ✅ "Hero Section" block is available
 4. ✅ ACF fields show when you add the block
 5. ✅ Block renders correctly on frontend
@@ -211,7 +211,7 @@ Once the hero-section is working:
 ## 📞 **Current Status**
 
 **What's Set Up:**
-- ✅ JLB Partners Core Loader (must-use plugin)
+- ✅ Golden Template Core Loader (must-use plugin)
 - ✅ Block registration system
 - ✅ Hero section component (fields, template, styles)
 - ✅ Fallback blocks for development

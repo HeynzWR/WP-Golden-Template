@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 // --- CONFIG ---
-const WP_URL = "https://jlb-partners.ddev.site/";   // Your WordPress site URL
+const WP_URL = "https://golden-template-partners.ddev.site/";   // Your WordPress site URL
 const WP_USER = "admin";                  // WP username
 const WP_APP_PASSWORD = "1aON ayM4 8iAK U458 erR1 Yymw";   // WP application password
 

@@ -2,7 +2,7 @@
 @use "variables/fonts" as *;
 @use "types" as *;
 
-.jlb.header {
+.golden-template.header {
   @include transition();
 
   position: absolute;

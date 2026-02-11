@@ -29,7 +29,7 @@ git init
 
 ### 2. Run the Rename Script
 
-The rename script will update all references from `jlbpartners` to your project name.
+The rename script will update all references from `golden-template` to your project name.
 
 ```bash
 # Make script executable (if not already)
@@ -157,7 +157,7 @@ Should show 0 ERRORS (warnings are acceptable).
 In `wp-content/themes/your-project-name/functions.php`, temporarily set:
 
 ```php
-define( 'JLBPARTNERS_DEBUG_TEMPLATES', true );  // Update this constant name
+define( 'GOLDEN_TEMPLATE_DEBUG_TEMPLATES', true );  // Update this constant name
 ```
 
 Visit your site - you should see a debug panel in the bottom-left showing which template is being used.
@@ -176,18 +176,18 @@ If you renamed the project but have an existing database with old references:
 
 ```bash
 # Using WP-CLI
-wp search-replace 'jlbpartners' 'your-project-name' --all-tables
+wp search-replace 'golden-template' 'your-project-name' --all-tables
 
 # Or use Better Search Replace plugin
 # Install it, go to Tools → Better Search Replace
-# Search for: jlbpartners
+# Search for: golden-template
 # Replace with: your-project-name
 # Select all tables
 # Run dry-run first!
 ```
 
 **Common database locations to update:**
-- Option names: `jlbpartners_logo`, `jlbpartners_*`
+- Option names: `golden_template_logo`, `golden_template_*`
 - Post meta keys
 - Widget settings
 - Theme mods

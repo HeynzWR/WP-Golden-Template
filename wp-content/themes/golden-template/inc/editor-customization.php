@@ -176,7 +176,7 @@ function golden_template_editor_notices() {
 			$message = 'Privacy Policy page: You can use all native WordPress blocks. Custom components are disabled on this page.';
 		} else {
 			$storage_key = 'golden_template_page_editor_intro_seen';
-			$message = 'Welcome to JLB Partners! Click the + button to add components to your page.';
+			$message = 'Welcome to Golden Template! Click the + button to add components to your page.';
 		}
 	} else {
 		$storage_key = 'golden_template_post_editor_intro_seen';

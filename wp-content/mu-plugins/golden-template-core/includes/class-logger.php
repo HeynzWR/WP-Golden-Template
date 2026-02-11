@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * JLB Partners Core Logger class.
+ * Golden Template Core Logger class.
  */
 class GoldenTemplate_Core_Logger {
 

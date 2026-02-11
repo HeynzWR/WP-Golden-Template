@@ -60,7 +60,7 @@ $projects_query = $wp_query;
 <main id="main" class="site-main">
 	<section class="section section--projects-listing">
 		<div class="container container--lg">
-			<div class="jlb projects-listing">
+			<div class="golden-template projects-listing">
 				
 				<!-- Page Title -->
 				<header class="projects-listing__header" data-aos="fade-up" data-aos-delay="100"    >

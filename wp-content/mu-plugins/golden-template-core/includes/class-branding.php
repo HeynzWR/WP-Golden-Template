@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * JLB Partners Core Branding class.
+ * Golden Template Core Branding class.
  */
 class GoldenTemplate_Core_Branding {
 

@@ -1,7 +1,7 @@
 /**
  * Header Navigation
  * 
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 (function () {

@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * JLB Partners Core Plugin Checker class.
+ * Golden Template Core Plugin Checker class.
  */
 class GoldenTemplate_Core_Plugin_Checker {
 
@@ -111,9 +111,9 @@ class GoldenTemplate_Core_Plugin_Checker {
 	 * Check plugins and log any issues.
 	 */
 	public function check_plugins() {
-		// Only check if JLB Partners theme is active.
+		// Only check if Golden Template theme is active.
 		$current_theme = wp_get_theme();
-		if ( 'JLB Partners' !== $current_theme->get( 'Name' ) && 'golden-template' !== $current_theme->get_template() ) {
+		if ( 'Golden Template' !== $current_theme->get( 'Name' ) && 'golden-template' !== $current_theme->get_template() ) {
 			return;
 		}
 
@@ -134,9 +134,9 @@ class GoldenTemplate_Core_Plugin_Checker {
 	 * Display plugin notices in admin.
 	 */
 	public function display_plugin_notices() {
-		// Only show if JLB Partners theme is active.
+		// Only show if Golden Template theme is active.
 		$current_theme = wp_get_theme();
-		if ( 'JLB Partners' !== $current_theme->get( 'Name' ) && 'golden-template' !== $current_theme->get_template() ) {
+		if ( 'Golden Template' !== $current_theme->get( 'Name' ) && 'golden-template' !== $current_theme->get_template() ) {
 			return;
 		}
 
@@ -149,8 +149,8 @@ class GoldenTemplate_Core_Plugin_Checker {
 		// Show notice for missing plugins.
 		?>
 		<div class="notice notice-error is-dismissible">
-			<h3><?php esc_html_e( 'JLB Partners Theme: Required Plugins Missing', 'golden-template-core' ); ?></h3>
-			<p><?php esc_html_e( 'The JLB Partners theme requires the following plugins to function properly:', 'golden-template-core' ); ?></p>
+			<h3><?php esc_html_e( 'Golden Template Theme: Required Plugins Missing', 'golden-template-core' ); ?></h3>
+			<p><?php esc_html_e( 'The Golden Template theme requires the following plugins to function properly:', 'golden-template-core' ); ?></p>
 			<ul style="list-style: disc; margin-left: 20px;">
 				<?php foreach ( $missing as $plugin ) : ?>
 					<li>

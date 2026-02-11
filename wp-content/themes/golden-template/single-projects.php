@@ -67,9 +67,9 @@ $next_project_image   = $next_post ? get_the_post_thumbnail_url( $next_post->ID,
 <main id="main" class="site-main">
 
 <div data-barba="wrapper">
-	<article id="project-<?php echo esc_attr( $project_id ); ?>" <?php post_class( 'jlb single-project' ); ?> data-barba="container" data-barba-namespace="project">
+	<article id="project-<?php echo esc_attr( $project_id ); ?>" <?php post_class( .golden-template single-project' ); ?> data-barba="container" data-barba-namespace="project">
 		<section class="section section--hero">
-			<div class="jlb hero hero--static hero--detail js-detail-hero">
+			<div class="golden-template hero hero--static hero--detail js-detail-hero">
 				<div class="hero__wrapper">
 					<div class="hero__container">
 						<?php if ( has_post_thumbnail() ) : ?>
@@ -104,7 +104,7 @@ $next_project_image   = $next_post ? get_the_post_thumbnail_url( $next_post->ID,
 			<div class="container container--xxl">
 				<!-- Project Tags Section -->
 				<?php if ( $project_tags && ! is_wp_error( $project_tags ) ) : ?>
-					<ul class="jlb tag-list">
+					<ul class="golden-template tag-list">
 						<?php foreach ( $project_tags as $project_tag ) : ?>
 							<li>
 								<span class="tag"><?php echo esc_html( $project_tag->name ); ?></span>
@@ -112,7 +112,7 @@ $next_project_image   = $next_post ? get_the_post_thumbnail_url( $next_post->ID,
 						<?php endforeach; ?>
 					</ul>
 				<?php endif; ?>
-				<div class="jlb image-gallery js-image-gallery">
+				<div class="golden-template image-gallery js-image-gallery">
 					<?php
 					// Get the content and extract gallery shortcode
 					$content = get_the_content();
@@ -193,7 +193,7 @@ $next_project_image   = $next_post ? get_the_post_thumbnail_url( $next_post->ID,
 		<?php if ( $next_post ) : ?>
 
 			<section class="section section--next-hero section--light">
-				<div class="jlb hero hero--static hero--preview js-hero-preview">
+				<div class="golden-template hero hero--static hero--preview js-hero-preview">
 					<span class="hero-preview__overlay hero-preview__overlay--gradient hero-preview__overlay--gradient--top js-hero-preview-overlay" style="--alpha: 0.01;" aria-hidden="true">Overlay</span>
 
 					<span class="hero-preview__overlay hero-preview__overlay--gradient hero-preview__overlay--gradient--bottom js-hero-preview-overlay" style="--alpha: 0.01;" aria-hidden="true">Overlay</span>

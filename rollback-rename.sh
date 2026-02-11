@@ -18,6 +18,10 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
+# Template originals
+TEMPLATE_SLUG="golden-template"
+TEMPLATE_MU_SLUG="golden-template-core"
+
 print_error() {
     echo -e "${RED}✗${NC} $1"
 }
@@ -67,40 +71,36 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 # Restore theme
-if [[ -d "$BACKUP_DIR/theme_jlbpartners" ]]; then
+if [[ -d "$BACKUP_DIR/theme_${TEMPLATE_SLUG}" ]]; then
     print_info "Restoring theme..."
     
-    # Remove current theme if it exists under a different name
-    CURRENT_THEME=$(find wp-content/themes -maxdepth 1 -type d ! -name "themes" ! -name "index.php" 2>/dev/null | head -n 1)
-    if [[ -n "$CURRENT_THEME" ]] && [[ "$CURRENT_THEME" != "wp-content/themes/jlbpartners" ]]; then
-        rm -rf "$CURRENT_THEME"
-        print_success "Removed current theme"
-    fi
+    # Remove current theme variations
+    find wp-content/themes -maxdepth 1 -type d ! -name "themes" ! -name "index.php" -exec rm -rf {} + 2>/dev/null || true
     
     # Restore from backup
-    cp -r "$BACKUP_DIR/theme_jlbpartners" "wp-content/themes/jlbpartners"
+    cp -r "$BACKUP_DIR/theme_${TEMPLATE_SLUG}" "wp-content/themes/${TEMPLATE_SLUG}"
     print_success "Theme restored"
 fi
 
 # Restore MU plugin
-if [[ -d "$BACKUP_DIR/mu-plugin_jlbpartners-core" ]]; then
+if [[ -d "$BACKUP_DIR/mu-plugin_${TEMPLATE_MU_SLUG}" ]]; then
     print_info "Restoring MU plugin..."
     
     # Remove current mu-plugin variations
-    find wp-content/mu-plugins -maxdepth 1 -type d -name "*-core" ! -name "jlbpartners-core" -exec rm -rf {} + 2>/dev/null || true
+    find wp-content/mu-plugins -maxdepth 1 -type d -name "*-core" -exec rm -rf {} + 2>/dev/null || true
     
-    cp -r "$BACKUP_DIR/mu-plugin_jlbpartners-core" "wp-content/mu-plugins/jlbpartners-core"
+    cp -r "$BACKUP_DIR/mu-plugin_${TEMPLATE_MU_SLUG}" "wp-content/mu-plugins/${TEMPLATE_MU_SLUG}"
     print_success "MU plugin restored"
 fi
 
 # Restore loader
-if [[ -f "$BACKUP_DIR/jlbpartners-core-loader.php" ]]; then
+if [[ -f "$BACKUP_DIR/${TEMPLATE_MU_SLUG}-loader.php" ]]; then
     print_info "Restoring MU plugin loader..."
     
     # Remove other loaders
-    find wp-content/mu-plugins -maxdepth 1 -type f -name "*-core-loader.php" ! -name "jlbpartners-core-loader.php" -delete 2>/dev/null || true
+    find wp-content/mu-plugins -maxdepth 1 -type f -name "*-core-loader.php" -delete 2>/dev/null || true
     
-    cp "$BACKUP_DIR/jlbpartners-core-loader.php" "wp-content/mu-plugins/jlbpartners-core-loader.php"
+    cp "$BACKUP_DIR/${TEMPLATE_MU_SLUG}-loader.php" "wp-content/mu-plugins/${TEMPLATE_MU_SLUG}-loader.php"
     print_success "MU plugin loader restored"
 fi
 
@@ -112,6 +112,6 @@ echo -e "${GREEN}╔════════════════════
 echo -e "${GREEN}║                  ✓ Rollback Complete!                         ║${NC}"
 echo -e "${GREEN}╚════════════════════════════════════════════════════════════════╝${NC}"
 echo ""
-print_info "Project has been restored to: jlbpartners"
+print_info "Project has been restored to: ${TEMPLATE_SLUG}"
 print_warning "Backup preserved at: $BACKUP_DIR"
 echo ""

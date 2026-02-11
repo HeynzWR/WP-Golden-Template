@@ -12,7 +12,7 @@ These files are loaded on the public website that visitors see. They do NOT affe
 
 ## Loaded by:
 
-- `functions.php` - Loads `main.css` via `jlbpartners_scripts()`
+- `functions.php` - Loads `main.css` via `golden_template_scripts()`
 
 ## Additional Frontend Styles:
 

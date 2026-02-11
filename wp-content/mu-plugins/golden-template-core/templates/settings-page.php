@@ -1,6 +1,6 @@
 <?php
 /**
- * JLB Partners Settings Page Template
+ * Golden Template Settings Page Template
  *
  * @package GoldenTemplate_Core
  */
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div class="wrap golden-template-settings">
-	<h1><?php esc_html_e( 'JLB Partners Theme Settings', 'golden-template-core' ); ?></h1>
+	<h1><?php esc_html_e( 'Golden Template Theme Settings', 'golden-template-core' ); ?></h1>
 	<p class="subtitle">
 		<?php esc_html_e( 'Configure your branding, footer settings, and theme options', 'golden-template-core' ); ?>
 	</p>

@@ -50,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		
 	// Determine which logos to use based on whether there's a hero block.
 	$logo_class = '';
-	$header_class = 'jlb header js-header';
+	$header_class = 'golden-template header js-header';
 	$main_class = 'site-main';
 	
 	if ( $has_hero_block ) {
@@ -70,7 +70,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if ( ! $logo_desktop_id ) {
 			$logo_desktop_id = get_option( 'golden_template_logo_desktop' );
 			$logo_class = 'logo--light';
-			$header_class = 'jlb header js-header'; // Remove header--dark
+			$header_class = 'golden-template header js-header'; // Remove header--dark
 			$main_class = 'site-main'; // Remove site-main--default
 		}
 		if ( ! $logo_mobile_id ) {

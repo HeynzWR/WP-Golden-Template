@@ -3,7 +3,7 @@
  * 
  * Auto-populates title, image, and description when a post is selected
  * 
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 (function($) {

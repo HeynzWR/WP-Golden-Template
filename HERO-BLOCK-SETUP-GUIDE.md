@@ -24,7 +24,7 @@ Your hero-section block **REQUIRES** Advanced Custom Fields PRO plugin to work.
 #### 3. **Verify Block is Available**
    - Go to: **Pages > Add New**
    - Click the **"+"** button (top left)
-   - Look for category: **"JLB Partners Components"**
+   - Look for category: **"Golden Template Components"**
    - You should see: **"Hero Section"** block
    - Also check for: **"Test Block"** in Common category
 
@@ -81,7 +81,7 @@ Your hero-section block **REQUIRES** Advanced Custom Fields PRO plugin to work.
 - [ ] License key entered (if required)
 - [ ] Editing a **Page** (not Post)
 - [ ] Browser cache cleared
-- [ ] Block appears in "JLB Partners Components" category
+- [ ] Block appears in "Golden Template Components" category
 
 ---
 
@@ -90,7 +90,7 @@ Your hero-section block **REQUIRES** Advanced Custom Fields PRO plugin to work.
 When everything is working:
 1. Go to **Pages > Add New**
 2. Click **"+"** button
-3. See **"JLB Partners Components"** category
+3. See **"Golden Template Components"** category
 4. Click **"Hero Section"** block
 5. Block appears with fields:
    - Background Image

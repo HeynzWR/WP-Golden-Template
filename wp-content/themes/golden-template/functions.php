@@ -1,6 +1,6 @@
 <?php
 /**
- * JLB Partners Theme Functions
+ * Golden Template Theme Functions
  *
  * @package GoldenTemplate
  */

@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: JLB Partners Core
+ * Plugin Name: Golden Template Core
  * Plugin URI: https://golden-template.com
- * Description: Core functionality for JLB Partners theme including update management, plugin dependency checks, and theme settings.
+ * Description: Core functionality for Golden Template theme including update management, plugin dependency checks, and theme settings.
  * Version: 1.0.0
- * Author: JLB Partners
+ * Author: Golden Template
  * Author URI: https://golden-template.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -25,7 +25,7 @@ define( 'GOLDEN_TEMPLATE_CORE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'GOLDEN_TEMPLATE_CORE_URL', plugin_dir_url( __FILE__ ) );
 
 /**
- * Autoloader for JLB Partners Core classes.
+ * Autoloader for Golden Template Core classes.
  *
  * @param string $class_name The class name to load.
  */
@@ -48,7 +48,7 @@ function golden_template_core_autoload( $class_name ) {
 spl_autoload_register( 'golden_template_core_autoload' );
 
 /**
- * Main JLB Partners Core class.
+ * Main Golden Template Core class.
  */
 class GoldenTemplate_Core {
 
@@ -149,7 +149,7 @@ class GoldenTemplate_Core {
 	 */
 	public function init_components() {
 		// Log plugin initialization.
-		$this->logger->log( 'JLB Partners Core initialized', 'info' );
+		$this->logger->log( 'Golden Template Core initialized', 'info' );
 	}
 
 	/**
@@ -195,7 +195,7 @@ class GoldenTemplate_Core {
 }
 
 /**
- * Get the main instance of JLB Partners Core.
+ * Get the main instance of Golden Template Core.
  *
  * @return GoldenTemplate_Core
  */

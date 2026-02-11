@@ -4,8 +4,8 @@
 > 
 > This repository is a **golden template** for WordPress projects. Before creating blocks:
 > 1. **Run the rename script first**: `./rename-project.sh your-project-name`
-> 2. All references to "jlbpartners" will be updated to your project name
-> 3. Follow this guide using YOUR project name, not "jlbpartners"
+> 2. All references to "golden-template" will be updated to your project name
+> 3. Follow this guide using YOUR project name, not "golden-template"
 > 
 > See [RENAME-GUIDE.md](RENAME-GUIDE.md) for detailed rename instructions.
 
@@ -69,7 +69,7 @@ The AI will generate all necessary files, register the block, and provide setup 
 /**
  * {Block Title} Block - ACF Fields
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 // Exit if accessed directly.
@@ -80,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Register ACF fields for {Block Title} Block
  */
-function jlbpartners_{block_name}_fields() {
+function golden_template_{block_name}_fields() {
     if ( ! function_exists( 'acf_add_local_field_group' ) ) {
         return;
     }
@@ -129,7 +129,7 @@ function jlbpartners_{block_name}_fields() {
         )
     );
 }
-add_action( 'acf/init', 'jlbpartners_{block_name}_fields' );
+add_action( 'acf/init', 'golden_template_{block_name}_fields' );
 ```
 
 ### Template File Template (`blocks/{block-name}/template.php`)
@@ -139,7 +139,7 @@ add_action( 'acf/init', 'jlbpartners_{block_name}_fields' );
 /**
  * {Block Title} Block Template
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  *
  * @param array  $block The block settings and attributes.
  * @param string $content The block inner HTML (empty).
@@ -169,7 +169,7 @@ if ( ! empty( $block['className'] ) ) {
 // PREVIEW MODE HANDLING
 // Enhanced preview mode - show image preview if no content.
 if ( $is_preview && empty( $required_field ) ) {
-    jlbpartners_show_block_preview( '{block-name}', __( '{Block Title} Block', 'jlbpartners' ) );
+    golden_template_show_block_preview( '{block-name}', __( '{Block Title} Block', 'golden-template' ) );
     return;
 }
 
@@ -449,7 +449,7 @@ if ( $image ) {
 - [ ] Create block preview image: `/assets/images/block-previews/{block-name}-preview.png`
 
 ### 2. Update Registration Files
-- [ ] Add to `/functions.php`: `require_once JLBPARTNERS_THEME_DIR . '/blocks/{block-name}/fields.php';`
+- [ ] Add to `/functions.php`: `require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/{block-name}/fields.php';`
 - [ ] Add to `/inc/blocks/block-registration.php`: Full block registration code
 - [ ] Add to `/inc/editor-customization.php`: `'acf/{block-name}'` in allowed blocks array
 - [ ] Add to `/inc/asset-loading.php`: CSS path in `$block_css_map` array (if custom CSS exists)
@@ -461,7 +461,7 @@ if ( $image ) {
 - [ ] Video accessibility fields: `video_title`, `video_description`
 
 ### 4. Code Quality & Testing
-- [ ] Run coding standards test: `./vendor/bin/phpcs --standard=WordPressVIPMinimum wp-content/themes/jlbpartners/`
+- [ ] Run coding standards test: `./vendor/bin/phpcs --standard=WordPressVIPMinimum wp-content/themes/golden-template/`
 - [ ] Ensure all PHP files pass WordPress VIP standards (no errors, warnings acceptable)
 - [ ] Test auto-population fetch buttons work correctly
 - [ ] Verify enhanced preview mode displays correctly
@@ -476,10 +476,10 @@ if ( $image ) {
 acf_register_block_type(
     array(
         'name'            => '{block-name}',
-        'title'           => __( '{Block Title}', 'jlbpartners' ),
-        'description'     => __( '{Block description}', 'jlbpartners' ),
+        'title'           => __( '{Block Title}', 'golden-template' ),
+        'description'     => __( '{Block description}', 'golden-template' ),
         'render_template' => get_template_directory() . '/blocks/{block-name}/template.php',
-        'category'        => 'jlbpartners-blocks',
+        'category'        => 'golden-template-blocks',
         'icon'            => array(
             'src'        => '{dashicon-name}', // e.g., 'layout', 'id-alt', 'format-gallery'
             'foreground' => '#00a400',
@@ -498,7 +498,7 @@ acf_register_block_type(
                 '{block-name}-block',
                 get_template_directory_uri() . '/blocks/{block-name}/style.css',
                 array(),
-                JLBPARTNERS_VERSION
+                GOLDEN_TEMPLATE_VERSION
             );
         },
     )
@@ -507,12 +507,12 @@ acf_register_block_type(
 
 ### Functions.php Addition
 ```php
-require_once JLBPARTNERS_THEME_DIR . '/blocks/{block-name}/fields.php';
+require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/{block-name}/fields.php';
 ```
 
 ### Editor Customization Addition
 ```php
-// Add to the return array in jlbpartners_allowed_block_types()
+// Add to the return array in golden_template_allowed_block_types()
 'acf/{block-name}',
 ```
 
@@ -564,7 +564,7 @@ require_once JLBPARTNERS_THEME_DIR . '/blocks/{block-name}/fields.php';
 
 ### Block Naming Convention
 - **Block name:** `kebab-case` (e.g., `feature-card`, `testimonial-slider`)
-- **Function names:** `snake_case` with `jlbpartners_` prefix
+- **Function names:** `snake_case` with `golden_template_` prefix
 - **CSS classes:** `kebab-case` with BEM-ish structure
 
 ---
@@ -618,7 +618,7 @@ require_once JLBPARTNERS_THEME_DIR . '/blocks/{block-name}/fields.php';
 #### 2. Block Preview Image (Required)
 - **Create:** Block preview image showing the component in use
 - **Save as:** `/assets/images/block-previews/{block-name}-preview.png`
-- **Purpose:** Used by `jlbpartners_show_block_preview()` function in enhanced preview mode
+- **Purpose:** Used by `golden_template_show_block_preview()` function in enhanced preview mode
 - **Naming:** Must match block folder name exactly (e.g., `sponsor-logos-preview.png`)
 
 #### 3. Block Screenshot (Optional)
@@ -668,7 +668,7 @@ require_once JLBPARTNERS_THEME_DIR . '/blocks/{block-name}/fields.php';
 **Required:** Run coding standards test on entire theme:
 ```bash
 # Run PHPCS on entire theme (required for all new blocks)
-./vendor/bin/phpcs --standard=WordPressVIPMinimum wp-content/themes/jlbpartners/
+./vendor/bin/phpcs --standard=WordPressVIPMinimum wp-content/themes/golden-template/
 
 # Should show 0 ERRORS (warnings are acceptable)
 # New blocks must not introduce any new errors
@@ -691,7 +691,7 @@ grep -r "http://" blocks/{block-name}/  # Should be empty (no hardcoded URLs)
 ### Common Issues & Solutions
 
 **Block doesn't appear in editor:**
-- ✅ Check `inc/editor-customization.php` has `'acf/{block-name}'` in `jlbpartners_allowed_block_types()` function
+- ✅ Check `inc/editor-customization.php` has `'acf/{block-name}'` in `golden_template_allowed_block_types()` function
 - ✅ Hard refresh editor (Cmd/Ctrl + Shift + R)
 - ✅ Check browser console for JavaScript errors
 
@@ -706,7 +706,7 @@ grep -r "http://" blocks/{block-name}/  # Should be empty (no hardcoded URLs)
 - ✅ Test with real content, not just placeholder text
 
 **Template debugging not showing block:**
-- ✅ Enable debugging: `define( 'JLBPARTNERS_DEBUG_TEMPLATES', true );` in functions.php
+- ✅ Enable debugging: `define( 'GOLDEN_TEMPLATE_DEBUG_TEMPLATES', true );` in functions.php
 - ✅ Check block is actually rendering (not returning early due to empty fields)
 - ✅ Verify block name matches registration
 
@@ -719,7 +719,7 @@ grep -r "http://" blocks/{block-name}/  # Should be empty (no hardcoded URLs)
 - ✅ All output must be escaped: `echo esc_html( $var );`
 - ✅ All input must be sanitized: `sanitize_text_field( $_POST['field'] );`
 - ✅ No hardcoded URLs: use `home_url()`, `get_permalink()`, etc.
-- ✅ Proper text domains: `__( 'Text', 'jlbpartners' )`
+- ✅ Proper text domains: `__( 'Text', 'golden-template' )`
 
 ### Debug Commands
 ```bash
@@ -728,7 +728,7 @@ define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
 
 # Enable template debugging
-define( 'JLBPARTNERS_DEBUG_TEMPLATES', true );
+define( 'GOLDEN_TEMPLATE_DEBUG_TEMPLATES', true );
 
 # Check error log
 tail -f wp-content/debug.log
@@ -747,7 +747,7 @@ This guide now enables any AI agent to automatically create complete, profession
 
 **Why**: Following coding standards from the beginning prevents errors and saves time. The theme uses WordPress VIP Coding Standards which are stricter than regular WordPress standards.
 
-**Check your code**: Run `./vendor/bin/phpcs --standard=WordPressVIPMinimum wp-content/themes/jlbpartners/blocks/{block-name}/` before committing.
+**Check your code**: Run `./vendor/bin/phpcs --standard=WordPressVIPMinimum wp-content/themes/golden-template/blocks/{block-name}/` before committing.
 
 ### Security Requirements
 
@@ -852,7 +852,7 @@ wp_remote_get( $url );
  * @param string $format  Output format ('html' or 'array').
  * @return array|string Formatted post data.
  */
-function jlbpartners_get_post_data( $post_id, $format = 'array' ) {
+function golden_template_get_post_data( $post_id, $format = 'array' ) {
     // Function implementation
 }
 ```
@@ -878,9 +878,9 @@ function my_function( $used_param, $unused_param ) {
 __( 'Hello World' );
 __( 'Hello World', 'wrong-domain' );
 
-// ✅ CORRECT - Always use 'jlbpartners' text domain
-__( 'Hello World', 'jlbpartners' );
-esc_html__( 'Hello World', 'jlbpartners' );
+// ✅ CORRECT - Always use 'golden-template' text domain
+__( 'Hello World', 'golden-template' );
+esc_html__( 'Hello World', 'golden-template' );
 ```
 
 ### Block-Specific Standards
@@ -891,7 +891,7 @@ esc_html__( 'Hello World', 'jlbpartners' );
 /**
  * Block Name Block Template
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  *
  * @param array  $block The block settings and attributes.
  * @param string $content The block inner HTML (empty).
@@ -928,7 +928,7 @@ if ( ! empty( $block['className'] ) ) {
 // PREVIEW MODE HANDLING
 if ( $is_preview && empty( $title ) ) {
     ?>
-    <div class="jlbpartners-block--preview">
+    <div class="golden-template-block--preview">
         <!-- Preview placeholder -->
     </div>
     <?php
@@ -951,7 +951,7 @@ if ( $is_preview && empty( $title ) ) {
 /**
  * Block Name Block - ACF Fields
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 // Exit if accessed directly.
@@ -962,7 +962,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Register ACF fields for Block Name Block
  */
-function jlbpartners_block_name_fields() {
+function golden_template_block_name_fields() {
     if ( ! function_exists( 'acf_add_local_field_group' ) ) {
         return;
     }
@@ -974,7 +974,7 @@ function jlbpartners_block_name_fields() {
             'fields' => array(
                 array(
                     'key'      => 'field_block_name_title',
-                    'label'    => __( 'Title', 'jlbpartners' ),
+                    'label'    => __( 'Title', 'golden-template' ),
                     'name'     => 'title',
                     'type'     => 'text',
                     'required' => 1,
@@ -993,7 +993,7 @@ function jlbpartners_block_name_fields() {
         )
     );
 }
-add_action( 'acf/init', 'jlbpartners_block_name_fields' );
+add_action( 'acf/init', 'golden_template_block_name_fields' );
 ```
 
 ### Common PHPCS Ignore Comments
@@ -1028,7 +1028,7 @@ Before committing any block code:
 - [ ] All output is escaped (`esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`)
 - [ ] All input is sanitized (`sanitize_text_field()`, etc.)
 - [ ] No global variable conflicts (`$cat`, `$link`, `$tag`, etc.)
-- [ ] Text domain is 'jlbpartners' for all translatable strings
+- [ ] Text domain is 'golden-template' for all translatable strings
 - [ ] No hardcoded URLs (use `home_url()`, `get_permalink()`, etc.)
 - [ ] Proper PHPDoc blocks for all functions
 - [ ] Exit if accessed directly check at top of files
@@ -1060,7 +1060,7 @@ The theme provides several helper functions you can reuse in your blocks:
 #### Image & Media Helpers
 ```php
 // Get placeholder image (from theme settings)
-$placeholder_url = jlbpartners_get_placeholder_image();
+$placeholder_url = golden_template_get_placeholder_image();
 
 // Get post featured image with ADA compliance and placeholder fallback
 // Note: This function may not exist yet - check functions.php for available helpers
@@ -1075,10 +1075,10 @@ $placeholder_url = jlbpartners_get_placeholder_image();
 #### Template & Asset Helpers
 ```php
 // Get theme logo (custom or WordPress default)
-$logo_html = jlbpartners_get_logo();
+$logo_html = golden_template_get_logo();
 
 // Check if current post uses ACF components
-$uses_acf = jlbpartners_uses_acf_components();
+$uses_acf = golden_template_uses_acf_components();
 ```
 
 ### Reusable Field Patterns
@@ -1204,7 +1204,7 @@ The theme includes built-in AJAX functionality you can extend:
 ```php
 // In inc/ajax-handlers.php
 // Check inc/ajax-handlers.php for available AJAX handlers
-// Common patterns: jlbpartners_ajax_* functions
+// Common patterns: golden_template_ajax_* functions
 ```
 
 #### Blog Filtering System
@@ -1219,7 +1219,7 @@ Follow this pattern in `inc/ajax-handlers.php`:
 ```php
 function your_custom_ajax_handler() {
     // Verify nonce for security
-    check_ajax_referer( 'jlbpartners_nonce', 'nonce' );
+    check_ajax_referer( 'golden_template_nonce', 'nonce' );
     
     // Get and sanitize input
     $input = isset( $_POST['input'] ) ? sanitize_text_field( wp_unslash( $_POST['input'] ) ) : '';
@@ -1235,13 +1235,13 @@ add_action( 'wp_ajax_nopriv_your_action', 'your_custom_ajax_handler' );
 
 #### JavaScript AJAX Pattern
 ```javascript
-// Use existing jlbpartnersData object (already localized)
+// Use existing golden-templateData object (already localized)
 const formData = new FormData();
 formData.append('action', 'your_action');
-formData.append('nonce', window.jlbpartnersData.nonce);
+formData.append('nonce', window.golden-templateData.nonce);
 formData.append('data', yourData);
 
-fetch(window.jlbpartnersData.ajaxUrl, {
+fetch(window.golden-templateData.ajaxUrl, {
     method: 'POST',
     body: formData
 })
@@ -1272,7 +1272,7 @@ Enable comprehensive debugging:
 
 ```php
 // In functions.php
-define( 'JLBPARTNERS_DEBUG_TEMPLATES', true );
+define( 'GOLDEN_TEMPLATE_DEBUG_TEMPLATES', true );
 ```
 
 **Debug panel shows:**
@@ -1321,7 +1321,7 @@ blocks/
 /**
  * Block Name - ACF Fields
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 // Exit if accessed directly.
@@ -1332,7 +1332,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Register ACF fields for Block Name
  */
-function jlbpartners_block_name_fields() {
+function golden_template_block_name_fields() {
     if ( ! function_exists( 'acf_add_local_field_group' ) ) {
         return;
     }
@@ -1356,7 +1356,7 @@ function jlbpartners_block_name_fields() {
         )
     );
 }
-add_action( 'acf/init', 'jlbpartners_block_name_fields' );
+add_action( 'acf/init', 'golden_template_block_name_fields' );
 ```
 
 ### 2. Template File (`template.php`)
@@ -1369,7 +1369,7 @@ add_action( 'acf/init', 'jlbpartners_block_name_fields' );
 /**
  * Block Name Block Template
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  *
  * @param array  $block The block settings and attributes.
  * @param string $content The block inner HTML (empty).
@@ -2006,7 +2006,7 @@ Use the enhanced preview mode with block preview images:
 ```php
 // Enhanced preview mode - show image preview if no content.
 if ( $is_preview && empty( $required_field ) ) {
-    jlbpartners_show_block_preview( '{block-name}', __( '{Block Title} Block', 'jlbpartners' ) );
+    golden_template_show_block_preview( '{block-name}', __( '{Block Title} Block', 'golden-template' ) );
     return;
 }
 ```
@@ -2014,7 +2014,7 @@ if ( $is_preview && empty( $required_field ) ) {
 **Requirements:**
 - Block preview image must exist at `/assets/images/block-previews/{block-name}-preview.png`
 - Image name must match block folder name exactly
-- The `jlbpartners_show_block_preview()` function automatically displays the image with helpful text
+- The `golden_template_show_block_preview()` function automatically displays the image with helpful text
 
 ### Legacy Empty State Pattern (Fallback)
 
@@ -2023,12 +2023,12 @@ For blocks without preview images, use the manual placeholder:
 ```php
 if ( $is_preview && empty( $required_field ) ) {
     ?>
-    <div class="jlbpartners-block--preview" style="min-height: 400px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border: 2px dashed #00a400; border-radius: 8px; padding: 40px; text-align: center;">
-        <div class="jlbpartners-block__preview-placeholder" style="max-width: 500px;">
+    <div class="golden-template-block--preview" style="min-height: 400px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border: 2px dashed #00a400; border-radius: 8px; padding: 40px; text-align: center;">
+        <div class="golden-template-block__preview-placeholder" style="max-width: 500px;">
             <div style="font-size: 48px; margin-bottom: 16px;">🎨</div>
             <h3 style="margin: 0 0 12px 0; color: #1d2327; font-size: 20px; font-weight: 600;">Add Your Content</h3>
             <p style="margin: 0 0 8px 0; color: #646970; font-size: 14px; line-height: 1.6;">
-                <?php esc_html_e( 'Add content to see your block preview.', 'jlbpartners' ); ?>
+                <?php esc_html_e( 'Add content to see your block preview.', 'golden-template' ); ?>
             </p>
             <div style="margin-top: 20px; padding: 12px; background: rgba(255, 255, 255, 0.7); border-radius: 4px; font-size: 12px; color: #646970;">
                 <strong>✨ Quick Tips:</strong><br>
@@ -2178,9 +2178,9 @@ phpcbf --standard=WordPressVIPMinimum blocks/block-name/
 
 4. **Proper text domains**
    ```php
-   __( 'Text', 'jlbpartners' )
-   esc_html__( 'Text', 'jlbpartners' )
-   esc_attr__( 'Text', 'jlbpartners' )
+   __( 'Text', 'golden-template' )
+   esc_html__( 'Text', 'golden-template' )
+   esc_attr__( 'Text', 'golden-template' )
    ```
 
 5. **PHPDoc blocks**
@@ -2200,7 +2200,7 @@ phpcbf --standard=WordPressVIPMinimum blocks/block-name/
 /**
  * File description
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 // Exit if accessed directly.
@@ -2224,10 +2224,10 @@ In `/inc/blocks/block-registration.php`:
 acf_register_block_type(
     array(
         'name'            => 'block-name',
-        'title'           => __( 'Block Name', 'jlbpartners' ),
-        'description'     => __( 'Brief description of block functionality', 'jlbpartners' ),
+        'title'           => __( 'Block Name', 'golden-template' ),
+        'description'     => __( 'Brief description of block functionality', 'golden-template' ),
         'render_template' => get_template_directory() . '/blocks/block-name/template.php',
-        'category'        => 'jlbpartners-blocks',
+        'category'        => 'golden-template-blocks',
         'icon'            => array(
             'src'        => 'layout', // Dashicon name
             'foreground' => '#00a400',
@@ -2254,7 +2254,7 @@ acf_register_block_type(
                 'block-name-block',
                 get_template_directory_uri() . '/blocks/block-name/style.css',
                 array(),
-                JLBPARTNERS_VERSION
+                GOLDEN_TEMPLATE_VERSION
             );
         },
     )
@@ -2269,7 +2269,7 @@ In `/functions.php`:
 /**
  * Load individual block field configurations.
  */
-require_once JLBPARTNERS_THEME_DIR . '/blocks/block-name/fields.php';
+require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/block-name/fields.php';
 ```
 
 ### Add to Smart Asset Loading
@@ -2287,7 +2287,7 @@ $block_css_map = array(
 
 **This is required or your block won't appear in the editor!**
 
-In `/inc/editor-customization.php`, add your block to the `jlbpartners_allowed_block_types()` function:
+In `/inc/editor-customization.php`, add your block to the `golden_template_allowed_block_types()` function:
 ```php
 /**
  * Filter which blocks can be used in the editor
@@ -2324,7 +2324,7 @@ This example shows how to create a complete block from start to finish, followin
 /**
  * Feature Card Block - ACF Fields
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 // Exit if accessed directly.
@@ -2335,7 +2335,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Register ACF fields for Feature Card Block
  */
-function jlbpartners_feature_card_fields() {
+function golden_template_feature_card_fields() {
     if ( ! function_exists( 'acf_add_local_field_group' ) ) {
         return;
     }
@@ -2473,7 +2473,7 @@ function jlbpartners_feature_card_fields() {
         )
     );
 }
-add_action( 'acf/init', 'jlbpartners_feature_card_fields' );
+add_action( 'acf/init', 'golden_template_feature_card_fields' );
 ```
 
 ### 2. Create Template File (`blocks/feature-card/template.php`)
@@ -2483,7 +2483,7 @@ add_action( 'acf/init', 'jlbpartners_feature_card_fields' );
 /**
  * Feature Card Block Template
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  *
  * @param array  $block The block settings and attributes.
  * @param string $content The block inner HTML (empty).
@@ -2522,7 +2522,7 @@ if ( ! empty( $block['className'] ) ) {
 // Preview mode handling
 if ( $is_preview && ( empty( $title ) || empty( $image ) ) ) {
     ?>
-    <div class="jlbpartners-block--preview" style="min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border: 2px dashed #00a400; border-radius: 8px; padding: 40px; text-align: center;">
+    <div class="golden-template-block--preview" style="min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border: 2px dashed #00a400; border-radius: 8px; padding: 40px; text-align: center;">
         <div>
             <div style="font-size: 48px; margin-bottom: 16px;">🎯</div>
             <h3 style="margin: 0 0 12px 0; color: #1d2327;">Feature Card</h3>
@@ -2671,10 +2671,10 @@ if ( ! $alt_text ) {
 acf_register_block_type(
     array(
         'name'            => 'feature-card',
-        'title'           => __( 'Feature Card', 'jlbpartners' ),
-        'description'     => __( 'Highlight a feature with image, title, description and CTA', 'jlbpartners' ),
+        'title'           => __( 'Feature Card', 'golden-template' ),
+        'description'     => __( 'Highlight a feature with image, title, description and CTA', 'golden-template' ),
         'render_template' => get_template_directory() . '/blocks/feature-card/template.php',
-        'category'        => 'jlbpartners-blocks',
+        'category'        => 'golden-template-blocks',
         'icon'            => array(
             'src'        => 'id-alt',
             'foreground' => '#00a400',
@@ -2692,7 +2692,7 @@ acf_register_block_type(
                 'feature-card-block',
                 get_template_directory_uri() . '/blocks/feature-card/style.css',
                 array(),
-                JLBPARTNERS_VERSION
+                GOLDEN_TEMPLATE_VERSION
             );
         },
     )
@@ -2703,7 +2703,7 @@ acf_register_block_type(
 
 **functions.php:**
 ```php
-require_once JLBPARTNERS_THEME_DIR . '/blocks/feature-card/fields.php';
+require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/feature-card/fields.php';
 ```
 
 **inc/smart-asset-loading.php:**
@@ -2716,7 +2716,7 @@ $block_css_map = array(
 
 **inc/editor-customization.php:**
 ```php
-function jlbpartners_allowed_block_types( $allowed_blocks, $editor_context ) {
+function golden_template_allowed_block_types( $allowed_blocks, $editor_context ) {
     return array(
         // ... existing blocks
         'acf/feature-card',

@@ -2,7 +2,7 @@
  * ACF Media Metadata Fetcher - Handles Regular Fields & Repeaters
  * Works automatically for standard naming patterns, with fallback mappings
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 (function($) {

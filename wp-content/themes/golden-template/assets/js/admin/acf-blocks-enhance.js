@@ -4,7 +4,7 @@
  * Auto-populate media fields from WordPress media library
  * Provides better UX for managing block images and videos
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 (function($) {
@@ -14,7 +14,7 @@
 	 * Initialize ACF block enhancements
 	 */
 	function initACFBlockEnhancements() {
-		console.log('JLB Partners: ACF Block Enhancements initialized');
+		console.log('Golden Template: ACF Block Enhancements initialized');
 
 		// Monitor image field changes
 		acf.addAction('load_field/type=image', initImageFieldAutoPopulation);

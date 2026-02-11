@@ -402,7 +402,7 @@ function golden_template_get_available_filters() {
 	}
 
 	// Try to get cached results first
-	$cache_key = 'jlb_available_filters_' . md5( wp_json_encode( array( $selected_states, $selected_types ) ) );
+	$cache_key = 'golden_template_available_filters_' . md5( wp_json_encode( array( $selected_states, $selected_types ) ) );
 	$cached    = get_transient( $cache_key );
 	
 	if ( false !== $cached ) {
@@ -509,7 +509,7 @@ function golden_template_get_available_terms_optimized( $check_taxonomy, $all_te
 	}
 	
 	// Check cache first
-	$cache_key_query = 'jlb_available_terms_' . md5( wp_json_encode( array( $check_taxonomy, $selected_other ) ) );
+	$cache_key_query = 'golden_template_available_terms_' . md5( wp_json_encode( array( $check_taxonomy, $selected_other ) ) );
 	$cached_slugs    = wp_cache_get( $cache_key_query, 'golden-template' );
 	
 	if ( false !== $cached_slugs ) {
@@ -547,7 +547,7 @@ function golden_template_clear_filter_cache( $post_id ) {
 	$transient_keys = $wpdb->get_col(
 		$wpdb->prepare(
 			"SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s",
-			$wpdb->esc_like( '_transient_jlb_available_filters_' ) . '%'
+			$wpdb->esc_like( '_transient_golden_template_available_filters_' ) . '%'
 		)
 	);
 	
@@ -561,7 +561,7 @@ function golden_template_clear_filter_cache( $post_id ) {
 	$timeout_keys = $wpdb->get_col(
 		$wpdb->prepare(
 			"SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s",
-			$wpdb->esc_like( '_transient_timeout_jlb_available_filters_' ) . '%'
+			$wpdb->esc_like( '_transient_timeout_golden_template_available_filters_' ) . '%'
 		)
 	);
 	

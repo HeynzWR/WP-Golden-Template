@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * JLB Partners Core Update Manager class.
+ * Golden Template Core Update Manager class.
  */
 class GoldenTemplate_Core_Update_Manager {
 

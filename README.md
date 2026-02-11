@@ -28,7 +28,7 @@ This is a **golden template** repository designed to be the foundation for all W
    ./rename-project.sh my-project-name
    ```
    
-   This will rename all instances of `jlbpartners` to your project name throughout the codebase.
+   This will rename all instances of `golden-template` to your project name throughout the codebase.
 
 3. **Install dependencies**
    ```bash
@@ -42,14 +42,14 @@ This is a **golden template** repository designed to be the foundation for all W
 
 ## 📁 What's Included
 
-### Theme (`wp-content/themes/jlbpartners/`)
+### Theme (`wp-content/themes/golden-template/`)
 - Modern ACF block-based architecture
 - Organized component system
 - Responsive styles with CSS custom properties
 - JavaScript modules for interactivity
 - Custom templates for post types
 
-### MU Plugin (`wp-content/mu-plugins/jlbpartners-core/`)
+### MU Plugin (`wp-content/mu-plugins/golden-template-core/`)
 - Core theme functionality
 - Update management
 - Plugin dependency checks
@@ -80,7 +80,7 @@ This template includes a comprehensive block development system. To create a new
 ```bash
 # AI agents can automatically create blocks using the guidelines
 "Create a testimonial-card block with image, quote, author, and rating 
-using the JLB Partners guidelines"
+using the Golden Template guidelines"
 ```
 
 See [BLOCK_DEVELOPMENT_GUIDELINES.md](BLOCK_DEVELOPMENT_GUIDELINES.md) for complete documentation.
@@ -107,14 +107,14 @@ See [BLOCK_DEVELOPMENT_GUIDELINES.md](BLOCK_DEVELOPMENT_GUIDELINES.md) for compl
 
 Run coding standards check:
 ```bash
-./vendor/bin/phpcs --standard=WordPress-VIP-Go wp-content/themes/jlbpartners/
+./vendor/bin/phpcs --standard=WordPress-VIP-Go wp-content/themes/golden-template/
 ```
 
 ### Testing
 
 Enable template debugging in `functions.php`:
 ```php
-define( 'JLBPARTNERS_DEBUG_TEMPLATES', true );
+define( 'GOLDEN_TEMPLATE_DEBUG_TEMPLATES', true );
 ```
 
 ## 📖 Documentation

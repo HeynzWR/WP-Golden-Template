@@ -1,4 +1,4 @@
-# ✅ JLB Partners Component System - FIXED & WORKING
+# ✅ Golden Template Component System - FIXED & WORKING
 
 ## 🎯 **SOLUTION COMPLETE**
 
@@ -61,7 +61,7 @@ Your component-based WordPress theme structure is now **FULLY WORKING**. Here's 
 ### **Step 3: Add Hero Block**
 1. Go to **Pages > Add New**
 2. Click **"+"** button
-3. Look for **"JLB Partners Components"** category
+3. Look for **"Golden Template Components"** category
 4. You should see:
    - **"Hero Section"** (if ACF Pro is licensed)
    - **"Hero Section (Fallback)"** (works without license)
@@ -69,7 +69,7 @@ Your component-based WordPress theme structure is now **FULLY WORKING**. Here's 
 ### **Step 4: Test the Component**
 1. Add the hero block to your page
 2. Fill in:
-   - **Title**: "Welcome to JLB Partners"
+   - **Title**: "Welcome to Golden Template"
    - **Content**: "This is our hero section component"
    - **Background Image**: Upload any image
    - **Test Items**: Add a few items with titles/descriptions
@@ -122,7 +122,7 @@ Edit `/blocks/hero-section/template.php` to use new fields
 ### **Style Changes:**
 Edit `/blocks/hero-section/hero-section.scss` and recompile:
 ```bash
-cd wp-content/themes/jlbpartners
+cd wp-content/themes/golden-template
 npx sass blocks/hero-section/hero-section.scss:blocks/hero-section/hero-section.css --style compressed
 ```
 

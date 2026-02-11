@@ -6,7 +6,7 @@
  * - Add custom Duplicate and Delete buttons to the toolbar
  * - Keep the Edit/Preview toggle
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 (function() {

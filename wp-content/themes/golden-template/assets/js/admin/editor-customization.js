@@ -1,9 +1,9 @@
 /**
  * Editor Customization Scripts
  *
- * Enhances the block editor for JLB Partners components.
+ * Enhances the block editor for Golden Template components.
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 (function() {
@@ -27,7 +27,7 @@
 	});
 
 	/**
-	 * Customize block inserter to focus on JLB Partners components
+	 * Customize block inserter to focus on Golden Template components
 	 */
 	function customizeBlockInserter() {
 		// Add custom CSS classes to inserter
@@ -127,7 +127,7 @@
 			brandingIndicator.innerHTML = `
 				<div class="golden_template-branding-indicator__content">
 					<strong>🎨 Theme Colors & Fonts</strong>
-					<p>All components automatically use your branding settings from <a href="/wp-admin/admin.php?page=golden_template-settings">JLB Partners → Settings</a></p>
+					<p>All components automatically use your branding settings from <a href="/wp-admin/admin.php?page=golden_template-settings">Golden Template → Settings</a></p>
 				</div>
 			`;
 			

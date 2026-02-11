@@ -1,7 +1,7 @@
 /**
- * JLB Partners Core Admin Scripts
+ * Golden Template Core Admin Scripts
  *
- * @package JLBPartners_Core
+ * @package GoldenTemplate_Core
  */
 
 (function($) {
@@ -11,13 +11,13 @@
 	 * Handle image uploads using WordPress Media Library
 	 */
 	function initImageUploads() {
-		$('.jlbpartners-upload-btn').on('click', function(e) {
+		$('.golden-template-upload-btn').on('click', function(e) {
 			e.preventDefault();
 
 			var button = $(this);
 			var target = button.data('target');
-			var inputField = $('#jlbpartners_' + target);
-			var previewContainer = button.siblings('.jlbpartners-image-preview');
+			var inputField = $('#golden-template_' + target);
+			var previewContainer = button.siblings('.golden-template-image-preview');
 
 			// Create a new media uploader instance for each upload
 			var mediaUploader = wp.media({
@@ -44,10 +44,10 @@
 				previewContainer.empty().append(img);
 
 				// Show remove button if it doesn't exist
-				if (!button.siblings('.jlbpartners-remove-btn').length) {
+				if (!button.siblings('.golden-template-remove-btn').length) {
 					var removeBtn = $('<button>')
 						.attr('type', 'button')
-						.addClass('button button-link-delete jlbpartners-remove-btn')
+						.addClass('button button-link-delete golden-template-remove-btn')
 						.attr('data-target', target)
 						.text('Remove');
 					button.after(removeBtn);
@@ -64,13 +64,13 @@
 		});
 
 		// Handle image removal
-		$(document).on('click', '.jlbpartners-remove-btn', function(e) {
+		$(document).on('click', '.golden-template-remove-btn', function(e) {
 			e.preventDefault();
 
 			var button = $(this);
 			var target = button.data('target');
-			var inputField = $('#jlbpartners_' + target);
-			var previewContainer = button.siblings('.jlbpartners-image-preview');
+			var inputField = $('#golden-template_' + target);
+			var previewContainer = button.siblings('.golden-template-image-preview');
 
 			// Clear the input field
 			inputField.val('');
@@ -99,24 +99,24 @@
 	 * Handle tab switching
 	 */
 	function initTabs() {
-		$('.jlbpartners-tab').on('click', function() {
+		$('.golden-template-tab').on('click', function() {
 			var target = $(this).data('tab');
 			
 			// Remove active class from all tabs and content
-			$('.jlbpartners-tab').removeClass('active');
-			$('.jlbpartners-tab-content').removeClass('active');
+			$('.golden-template-tab').removeClass('active');
+			$('.golden-template-tab-content').removeClass('active');
 			
 			// Add active class to clicked tab and corresponding content
 			$(this).addClass('active');
 			$('#tab-' + target).addClass('active');
 			
 			// Save active tab to localStorage
-			localStorage.setItem('jlbpartners_active_tab', target);
+			localStorage.setItem('golden-template_active_tab', target);
 		});
 
 		// Restore last active tab
-		var activeTab = localStorage.getItem('jlbpartners_active_tab') || 'branding';
-		$('.jlbpartners-tab[data-tab="' + activeTab + '"]').trigger('click');
+		var activeTab = localStorage.getItem('golden-template_active_tab') || 'branding';
+		$('.golden-template-tab[data-tab="' + activeTab + '"]').trigger('click');
 	}
 
 	/**
@@ -131,14 +131,14 @@
 	 */
 	function updateLogoPreview() {
 		// Update desktop logo preview
-		var logoDesktopId = $('#jlbpartners_logo_desktop').val();
+		var logoDesktopId = $('#golden-template_logo_desktop').val();
 		var desktopPreviewContainer = $('#logo-desktop-preview-display');
 		
 		if (!logoDesktopId) {
 			desktopPreviewContainer.html('<span style="color: #999;">No desktop logo</span>');
 		} else {
 			// Get the image from the main upload preview
-			var desktopMainPreview = $('#jlbpartners_logo_desktop').siblings('.jlbpartners-image-preview').find('img');
+			var desktopMainPreview = $('#golden-template_logo_desktop').siblings('.golden-template-image-preview').find('img');
 			if (desktopMainPreview.length) {
 				var clonedDesktopImg = desktopMainPreview.clone();
 				clonedDesktopImg.css({
@@ -151,14 +151,14 @@
 		}
 		
 		// Update mobile logo preview
-		var logoMobileId = $('#jlbpartners_logo_mobile').val();
+		var logoMobileId = $('#golden-template_logo_mobile').val();
 		var mobilePreviewContainer = $('#logo-mobile-preview-display');
 		
 		if (!logoMobileId) {
 			mobilePreviewContainer.html('<span style="color: #999;">No mobile logo</span>');
 		} else {
 			// Get the image from the main upload preview
-			var mobileMainPreview = $('#jlbpartners_logo_mobile').siblings('.jlbpartners-image-preview').find('img');
+			var mobileMainPreview = $('#golden-template_logo_mobile').siblings('.golden-template-image-preview').find('img');
 			if (mobileMainPreview.length) {
 				var clonedMobileImg = mobileMainPreview.clone();
 				clonedMobileImg.css({
@@ -175,25 +175,25 @@
 	 * Initialize sponsor repeater functionality
 	 */
 	function initSponsorRepeater() {
-		var container = $('#jlbpartners-sponsors-container');
-		var addButton = $('#jlbpartners-add-sponsor-btn');
+		var container = $('#golden-template-sponsors-container');
+		var addButton = $('#golden-template-add-sponsor-btn');
 		
 		// Function to reindex all sponsor rows
 		function reindexSponsors() {
-			container.find('.jlbpartners-sponsor-row').each(function(index) {
+			container.find('.golden-template-sponsor-row').each(function(index) {
 				$(this).attr('data-index', index);
 				$(this).find('h4').text('Sponsor ' + (index + 1));
-				$(this).find('.jlbpartners-sponsor-image').attr('name', 'jlbpartners_sponsors[' + index + '][image_id]');
-				$(this).find('.jlbpartners-sponsor-url').attr('name', 'jlbpartners_sponsors[' + index + '][url]');
+				$(this).find('.golden-template-sponsor-image').attr('name', 'golden-template_sponsors[' + index + '][image_id]');
+				$(this).find('.golden-template-sponsor-url').attr('name', 'golden-template_sponsors[' + index + '][url]');
 			});
 		}
 		
 		// Function to serialize sponsors to JSON before form submission
 		function serializeSponsors() {
 			var sponsors = [];
-			container.find('.jlbpartners-sponsor-row').each(function() {
-				var imageId = $(this).find('.jlbpartners-sponsor-image').val();
-				var url = $(this).find('.jlbpartners-sponsor-url').val();
+			container.find('.golden-template-sponsor-row').each(function() {
+				var imageId = $(this).find('.golden-template-sponsor-image').val();
+				var url = $(this).find('.golden-template-sponsor-url').val();
 				
 				// Only add if image is uploaded
 				if (imageId && imageId != '0') {
@@ -204,27 +204,27 @@
 				}
 			});
 			
-			$('#jlbpartners_sponsors').val(JSON.stringify(sponsors));
+			$('#golden-template_sponsors').val(JSON.stringify(sponsors));
 		}
 		
 		// Add new sponsor row
 		addButton.on('click', function(e) {
 			e.preventDefault();
 			
-			var currentIndex = container.find('.jlbpartners-sponsor-row').length;
+			var currentIndex = container.find('.golden-template-sponsor-row').length;
 			
-			var newRow = $('<div class="jlbpartners-sponsor-row" data-index="' + currentIndex + '">' +
+			var newRow = $('<div class="golden-template-sponsor-row" data-index="' + currentIndex + '">' +
 				'<h4>Sponsor ' + (currentIndex + 1) + '</h4>' +
 				'<table class="form-table">' +
 					'<tr>' +
 						'<th scope="row">Logo</th>' +
 						'<td>' +
-							'<div class="jlbpartners-image-upload">' +
-								'<div class="jlbpartners-image-preview">' +
+							'<div class="golden-template-image-upload">' +
+								'<div class="golden-template-image-preview">' +
 									'<span class="description">No logo uploaded</span>' +
 								'</div>' +
-								'<input type="hidden" class="jlbpartners-sponsor-image" name="jlbpartners_sponsors[' + currentIndex + '][image_id]" value="0" />' +
-								'<button type="button" class="button jlbpartners-sponsor-upload-btn">Upload Logo</button>' +
+								'<input type="hidden" class="golden-template-sponsor-image" name="golden-template_sponsors[' + currentIndex + '][image_id]" value="0" />' +
+								'<button type="button" class="button golden-template-sponsor-upload-btn">Upload Logo</button>' +
 								'<p class="description">Recommended size: 200x80px PNG with transparency.</p>' +
 							'</div>' +
 						'</td>' +
@@ -232,12 +232,12 @@
 					'<tr>' +
 						'<th scope="row"><label>Website URL</label></th>' +
 						'<td>' +
-							'<input type="url" class="regular-text jlbpartners-sponsor-url" name="jlbpartners_sponsors[' + currentIndex + '][url]" value="" placeholder="https://sponsorwebsite.com" />' +
+							'<input type="url" class="regular-text golden-template-sponsor-url" name="golden-template_sponsors[' + currentIndex + '][url]" value="" placeholder="https://sponsorwebsite.com" />' +
 							'<p class="description">Website URL for this sponsor (opens in new tab).</p>' +
 						'</td>' +
 					'</tr>' +
 				'</table>' +
-				'<button type="button" class="button button-link-delete jlbpartners-remove-sponsor-btn">Remove Sponsor</button>' +
+				'<button type="button" class="button button-link-delete golden-template-remove-sponsor-btn">Remove Sponsor</button>' +
 				'<hr style="margin: 20px 0;">' +
 			'</div>');
 			
@@ -245,23 +245,23 @@
 		});
 		
 		// Remove sponsor row
-		container.on('click', '.jlbpartners-remove-sponsor-btn', function(e) {
+		container.on('click', '.golden-template-remove-sponsor-btn', function(e) {
 			e.preventDefault();
 			
 			if (confirm('Are you sure you want to remove this sponsor?')) {
-				$(this).closest('.jlbpartners-sponsor-row').remove();
+				$(this).closest('.golden-template-sponsor-row').remove();
 				reindexSponsors();
 			}
 		});
 		
 		// Handle sponsor image upload
-		container.on('click', '.jlbpartners-sponsor-upload-btn', function(e) {
+		container.on('click', '.golden-template-sponsor-upload-btn', function(e) {
 			e.preventDefault();
 			
 			var button = $(this);
-			var row = button.closest('.jlbpartners-sponsor-row');
-			var inputField = row.find('.jlbpartners-sponsor-image');
-			var previewContainer = row.find('.jlbpartners-image-preview');
+			var row = button.closest('.golden-template-sponsor-row');
+			var inputField = row.find('.golden-template-sponsor-image');
+			var previewContainer = row.find('.golden-template-image-preview');
 			
 			var mediaUploader = wp.media({
 				title: 'Choose Sponsor Logo',
@@ -284,10 +284,10 @@
 				previewContainer.empty().append(img);
 				
 				// Add remove image button if it doesn't exist
-				if (!button.siblings('.jlbpartners-sponsor-remove-image-btn').length) {
+				if (!button.siblings('.golden-template-sponsor-remove-image-btn').length) {
 					var removeBtn = $('<button>')
 						.attr('type', 'button')
-						.addClass('button button-link-delete jlbpartners-sponsor-remove-image-btn')
+						.addClass('button button-link-delete golden-template-sponsor-remove-image-btn')
 						.text('Remove Image');
 					button.after(removeBtn);
 				}
@@ -297,13 +297,13 @@
 		});
 		
 		// Handle sponsor image removal
-		container.on('click', '.jlbpartners-sponsor-remove-image-btn', function(e) {
+		container.on('click', '.golden-template-sponsor-remove-image-btn', function(e) {
 			e.preventDefault();
 			
 			var button = $(this);
-			var row = button.closest('.jlbpartners-sponsor-row');
-			var inputField = row.find('.jlbpartners-sponsor-image');
-			var previewContainer = row.find('.jlbpartners-image-preview');
+			var row = button.closest('.golden-template-sponsor-row');
+			var inputField = row.find('.golden-template-sponsor-image');
+			var previewContainer = row.find('.golden-template-image-preview');
 			
 			inputField.val('0');
 			previewContainer.html('<span class="description">No logo uploaded</span>');
@@ -323,10 +323,10 @@
 		// Preview image paths
 		var previewImages = {
 			'footer-settings': [
-				JLBPARTNERS_CORE_URL + 'assets/images/preview-footer-settings.png'
+				GOLDEN_TEMPLATE_CORE_URL + 'assets/images/preview-footer-settings.png'
 			],
 			'subscription-area': [
-				JLBPARTNERS_CORE_URL + 'assets/images/preview-subscription-area.png'
+				GOLDEN_TEMPLATE_CORE_URL + 'assets/images/preview-subscription-area.png'
 			]
 		};
 		
@@ -336,23 +336,23 @@
 		};
 		
 		// Create backdrop and tooltip HTML if they don't exist
-		if ($('#jlbpartners-preview-backdrop').length === 0) {
-			$('body').append('<div id="jlbpartners-preview-backdrop" class="jlbpartners-preview-backdrop"></div>');
+		if ($('#golden-template-preview-backdrop').length === 0) {
+			$('body').append('<div id="golden-template-preview-backdrop" class="golden-template-preview-backdrop"></div>');
 		}
 		
-		if ($('#jlbpartners-preview-tooltip').length === 0) {
+		if ($('#golden-template-preview-tooltip').length === 0) {
 			$('body').append(
-				'<div id="jlbpartners-preview-tooltip" class="jlbpartners-preview-tooltip">' +
+				'<div id="golden-template-preview-tooltip" class="golden-template-preview-tooltip">' +
 					'<img src="" alt="Preview" />' +
-					'<div class="jlbpartners-preview-tooltip-caption"></div>' +
+					'<div class="golden-template-preview-tooltip-caption"></div>' +
 				'</div>'
 			);
 		}
 		
-		var backdrop = $('#jlbpartners-preview-backdrop');
-		var tooltip = $('#jlbpartners-preview-tooltip');
+		var backdrop = $('#golden-template-preview-backdrop');
+		var tooltip = $('#golden-template-preview-tooltip');
 		var tooltipImg = tooltip.find('img');
-		var tooltipCaption = tooltip.find('.jlbpartners-preview-tooltip-caption');
+		var tooltipCaption = tooltip.find('.golden-template-preview-tooltip-caption');
 		
 		// Function to try loading image with fallback
 		function loadImageWithFallback(urls, index, callback) {
@@ -371,7 +371,7 @@
 		}
 		
 		// Handle preview icon hover
-		$(document).on('mouseenter', '.jlbpartners-preview-icon', function(e) {
+		$(document).on('mouseenter', '.golden-template-preview-icon', function(e) {
 			var $icon = $(this);
 			var previewType = $icon.data('preview');
 			
@@ -389,7 +389,7 @@
 		});
 		
 		// Hide tooltip on mouse leave
-		$(document).on('mouseleave', '.jlbpartners-preview-icon', function() {
+		$(document).on('mouseleave', '.golden-template-preview-icon', function() {
 			backdrop.removeClass('active');
 			tooltip.removeClass('active');
 		});

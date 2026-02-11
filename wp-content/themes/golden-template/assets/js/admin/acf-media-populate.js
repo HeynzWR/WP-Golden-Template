@@ -2,7 +2,7 @@
  * ACF Media Auto-Populate
  * Automatically populate accessibility fields from WordPress media library metadata
  *
- * @package JLBPartners
+ * @package GoldenTemplate
  */
 
 (function($) {

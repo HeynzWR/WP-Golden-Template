@@ -11,7 +11,7 @@ if ( ! is_singular( 'projects' ) ) :
       
       <!-- Logo and Contact Column -->
       <div class="footer__col-logo">
-        <a class="footer__logo" href="/" aria-label="JLB Partners - Return to homepage">
+        <a class="footer__logo" href="/" aria-label="Golden Template - Return to homepage">
 			<img 
 			src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/icons/footer-logo.svg"
 			alt=""
@@ -44,8 +44,8 @@ if ( ! is_singular( 'projects' ) ) :
 		/>
 		</a>
       
-      <p class="footer__copyright_desktop"><?php echo do_shortcode( '[jlb_copyright format="desktop"]' ); ?></p>
-      <p class="footer__copyright_mobile"><?php echo do_shortcode( '[jlb_copyright format="mobile"]' ); ?></p>
+      <p class="footer__copyright_desktop"><?php echo do_shortcode( '[golden_template_copyright format="desktop"]' ); ?></p>
+      <p class="footer__copyright_mobile"><?php echo do_shortcode( '[golden_template_copyright format="mobile"]' ); ?></p>
     </div>
 	</div>
 

@@ -4,15 +4,15 @@ This folder contains JavaScript files used in the WordPress Admin area (backend)
 
 ## Files:
 
-- **editor-customization.js** - Enhances the Gutenberg block editor UI/UX for JLB Partners components
+- **editor-customization.js** - Enhances the Gutenberg block editor UI/UX for Golden Template components
 
 ## Usage:
 
-These files are loaded ONLY when editing pages/posts in the WordPress block editor. They do NOT affect the frontend website or the JLB Partners Settings page.
+These files are loaded ONLY when editing pages/posts in the WordPress block editor. They do NOT affect the frontend website or the Golden Template Settings page.
 
 ## Features:
 
-- Customizes block inserter to highlight JLB Partners components
+- Customizes block inserter to highlight Golden Template components
 - Adds component badges and preview indicators
 - Adds branding indicator in editor sidebar
 - Implements keyboard shortcuts for better workflow

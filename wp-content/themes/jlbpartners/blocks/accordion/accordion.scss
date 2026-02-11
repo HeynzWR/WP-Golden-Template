@@ -1,0 +1,176 @@
+@use "../../styles/mixins/mixin" as *;
+.jlb.accordion {
+    .accordion__header {
+        background-color: transparent;
+        border: none;
+        width: 100%;
+        position: relative;
+        text-align: left;
+        padding: rem(12) rem(24) rem(18);
+        @include transition();
+        &:hover, &:focus-visible {
+            background-color: var(--secondary);
+            .accordion__title,.accordion__subtitle {
+                color: var(--primary);
+            }
+            .accordion__icon{
+                &:before,&:after{
+                    background-color: var(--primary);
+                }
+            }
+        }
+        @media #{$xl}{
+            min-height: rem(131);
+        }
+    }
+    .accordion__header-wrap{
+        position: relative;
+        @media #{$xl}{
+            max-width: rem(1056);
+            margin: auto;
+            display: flex;
+            align-items: center;
+            padding-right: 0;
+        }
+    }
+    .accordion__title{
+        font-size: rem(24);
+        font-weight: 400;
+        line-height: rem(40);
+        color: var(--secondary);
+        margin-bottom: 0;
+        @include transition();
+        @media #{$xl}{
+            font-size: rem(48);
+            line-height: 136%;
+            flex-grow: 1;
+            padding-left: rem(36);
+        }
+    }
+    .accordion__subtitle{
+        font-family: var(--secondary-font);
+        font-size: rem(11);
+        line-height: rem(24);
+        font-weight: 580;
+        color: var(--secondary);
+        @include transition();
+        @media #{$xl}{
+            font-size: rem(18);
+            line-height: 136%;
+        }
+    }
+    .accordion__icon{
+        color: transparent;
+        font-size: 0;
+        position: absolute;
+        right: 0;
+        top: rem(12);
+        width: rem(24);
+        height: rem(17);
+        @media #{$xl}{
+            height: rem(24);
+            left: 0;
+            right: auto;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        &:after,&:before{
+            content: '';
+            background-color: var(--secondary);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            @include transition();
+        }
+        &:before {
+            width: rem(17);
+            height: rem(2);
+            @media #{$xl}{
+                width: rem(20);
+            }
+        }
+        &:after {
+            width: rem(2);
+            height: rem(17);
+            @media #{$xl}{
+                height: rem(20);
+            }
+        }
+    }
+    .accordion__content{
+        padding: rem(14) rem(24) rem(16);
+        display: none;
+        @media #{$xl}{
+            max-width: rem(1056);
+            margin: auto;
+            padding: 0 rem(39) rem(48);
+        }
+        p {
+            font-size: rem(16);
+            font-family: var(--secondary-font);
+            font-weight: 580;
+            line-height: rem(24);
+            color: var(--primary);
+            @include transition();
+            @media #{$xl}{
+                max-width: rem(512);
+            }
+        }
+    }
+    .accordion__item{
+        @include transition();
+        position: relative;
+        &.is-active{
+            background-color: var(--secondary);
+            &:after {
+                background-color: var(--secondary);
+            }
+            .accordion__title,.accordion__subtitle,.accordion__content {
+                color: var(--primary);
+            }
+            .accordion__content{
+                p {
+                    color: var(--primary);
+                }
+            }
+            .accordion__icon{
+                &:before,&:after{
+                    background-color: var(--primary);
+                }
+                &:after{
+                    opacity: 0;
+                }
+            }
+        }
+        &:hover {
+            &:after {
+                background-color: var(--secondary);
+            }
+        }
+        &:after{
+            content: '';
+            width: calc(100% - rem(48));
+            height: rem(1);
+            background-color: var(--tag);
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            @include transition();
+            @media #{$xl}{
+                display: none;
+            }
+        }
+    }
+}
+
+.section {
+    &--accordion {
+        padding: rem(65) 0;
+        border-bottom: rem(1) solid var(--secondary);
+        @media #{$xl}{
+            padding: rem(180) 0;
+        }
+    }
+}

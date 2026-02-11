@@ -1,0 +1,143 @@
+@use "../../styles/mixins/mixin" as *;
+@use "../../styles/types" as *;
+
+.jlb.about {
+  background-color: var(--secondary);
+  padding: rem(64) 0 0;
+  
+  @media #{$lg} {
+    padding: rem(240) 0;
+  }
+
+  &--reverse {
+    .about__text {
+      grid-area: 1 / 2 / 2 / 3;
+    }
+
+    .about__image {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+  }
+        
+  .about__title {
+    color: var(--primary);
+    padding: fluid(28, 56, 393, 1728) rem(24) fluid(27, 52, 393, 1728);
+    margin-bottom: 0;
+
+    @include desktop-h2;
+  }
+
+  /* =====================
+    STATS
+  ===================== */
+  .about__stats {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    @media #{$lg} {
+      flex-direction: row;
+      border-bottom: rem(1) solid var(--primary);
+      border-top: rem(1) solid var(--primary);
+    }
+  }
+
+  .about__stat {
+    padding: fluid(60, 149, 393, 1728) rem(24) fluid(60, 125, 393, 1728);
+    border-bottom: rem(1) solid var(--primary);
+
+    @media #{$lg} {
+      border-bottom: none;
+    }
+
+    &:first-child {
+      border-top: rem(1) solid var(--primary);
+
+      @media #{$lg} {
+        border-top: none;
+      }
+    }
+
+    @media #{$lg} {
+      flex: 1;
+
+      &:not(:last-child) {
+        border-right: rem(1) solid var(--primary);
+      }
+    }
+  }
+
+  .about__stat-value {
+    @include desktop-lg-body;
+
+    display: block;
+    margin-bottom: fluid(6, 12, 393, 1728);
+    color: var(--primary);
+    font-weight: 750;
+  }
+
+  .about__stat-label {
+    @include desktop-body;
+
+    font-family: var(--secondary-font);
+    color: var(--primary);
+  }
+
+  /* =====================
+    CONTENT — TEXT + IMAGE
+  ===================== */
+  .about__content {
+    @media #{$lg} {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: rem(1) solid var(--primary);
+    }
+  }
+
+  .about__text {   
+    padding: rem(57) rem(24) rem(63);
+
+    @media #{$lg} {
+      padding: rem(51) rem(64) rem(66);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    p {
+      @include desktop-lg-body;
+
+      color: var(--primary);
+      line-height: 1.36;
+      font-weight: 400;
+      margin-bottom: rem(58);
+      font-size: fluid(24, 32, 393, 1728);
+
+      @media #{$lg} {
+        line-height: 1.6;
+        letter-spacing: rem(-0.6);
+        text-align: left;
+      }
+    }
+  }
+
+  .about__btn-container {
+    text-align: center;
+  }
+
+  .about__image {
+    border-top: rem(1) solid var(--primary);
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      
+      @media #{$lg} {
+        aspect-ratio: 864 / 912;
+        height: 100%;
+      }
+    }
+  }
+}

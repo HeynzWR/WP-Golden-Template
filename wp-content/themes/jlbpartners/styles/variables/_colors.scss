@@ -1,0 +1,45 @@
+/* ===================================
+   Brand Palette
+=================================== */
+@use "sass:map";
+
+$custom-brand-colors: (
+  "black": #000,
+  "white": #fff,
+  "offwhite": #EBE8DA,
+  "blue": #013D62,
+  "Charcoal": #22211A,
+  "dark-gray": #5B5A54,
+  "ice-blue": #013D621A,
+  "white-50": rgba(255, 255, 255, 0.5),
+  "white-40": rgba(255, 255, 255, 0.4),
+  "black-10": rgba(0, 0, 0, 0.1),
+  "white-30": rgba(255, 255, 255, 0.3),
+  "tag": #DFDCCE,
+  "tag-dark": #CCCABE,
+  "red": #dc3232,
+  "green": #46b450
+);
+$colors: (
+  "black": map.get($custom-brand-colors, "black"),
+  "white": map.get($custom-brand-colors, "white"),
+  "primary": map.get($custom-brand-colors, "offwhite"),
+  "primary-dark": map.get($custom-brand-colors, "dark-gray"),
+  "primary-light": map.get($custom-brand-colors, "Charcoal"),
+  "secondary": map.get($custom-brand-colors, "blue"),
+  "secondary-light": map.get($custom-brand-colors, "ice-blue"),
+  "white-50": map.get($custom-brand-colors, "white-50"),
+  "black-10": map.get($custom-brand-colors, "black-10"),
+  "white-40": map.get($custom-brand-colors, "white-40"),
+  "tag": map.get($custom-brand-colors, "tag"),
+  "tag-dark": map.get($custom-brand-colors, "tag-dark"),
+  "white-30": map.get($custom-brand-colors, "white-30"),
+  "red": map.get($custom-brand-colors, "red"),
+  "green": map.get($custom-brand-colors, "green")
+);
+
+:root {
+  @each $name, $color in $colors {
+    --#{$name}: #{$color};
+  }
+}

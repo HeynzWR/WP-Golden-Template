@@ -1,0 +1,280 @@
+@use "mixins/mixin" as *;
+@use "variables/fonts" as *;
+@use "types" as *;
+
+.jlb.header {
+  @include transition();
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: transparent;
+
+  @include desktop-up {
+    overflow: hidden;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height, rem(97));
+    max-height: 100vh;
+    backdrop-filter: blur(rem(10));
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  &.scrolled {
+    &::before {
+     opacity: 1;
+     visibility: visible; 
+    }
+  }
+
+  .header__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: rem(24);
+    padding: rem(24) rem(24) rem(23);
+    border-bottom: rem(1) solid var(--primary);
+    
+    @include desktop-up {
+      gap: rem(32);
+      padding: rem(31) rem(64);
+    }
+  }
+  
+  .header__logo {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: fluid(68, 100, 393, 1728);
+
+    @include desktop-up {
+      position: absolute;
+      top: rem(28);
+      left: rem(102);
+      z-index: 1;
+    }
+
+    a,
+    figure,
+    picture {
+      display: block;
+      margin: 0;
+      
+      img,
+      svg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        margin: 0;
+      }
+    }
+  }
+
+  .header__nav {
+    @include desktop-up {
+      flex-grow: 1;
+    }
+  }
+
+  .header__nav-inner {
+    position: fixed;
+    top: var(--header-height, rem(176));
+    left: 0;
+    width: 100%;
+    height: calc(100% - var(--header-height, rem(176)));
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    overflow-y: auto;
+    padding: rem(62) rem(24) rem(61);
+    
+
+    @include transition;
+
+    @media #{$xl-m} {
+      border-bottom: rem(1) solid var(--primary);
+      backdrop-filter: blur(rem(10));
+    }
+
+    @include desktop-up {
+      position: relative;
+      height: max-content;
+      padding: 0;
+      top: 0;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+
+  .mobile-menu-toggle{
+    @include desktop-up {
+      display: none;
+    }
+  }
+
+  .mobile-menu-toggle,
+  .header__nav-links a {
+    @include desktop-body;
+
+    letter-spacing: rem(0.48);
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: none;
+    background-color: transparent;
+    color: var(--primary);
+    position: relative;
+
+    @include desktop-up {
+      font-size: rem(18);
+      font-weight: 750;
+      letter-spacing: rem(0.54);
+    }
+  }
+
+  .header__nav-links {
+    @include transition();
+
+    display: flex;
+    flex-direction: column;
+    gap: rem(12);
+    list-style: none;
+    justify-content: center;
+    align-items: flex-end;
+
+    @include desktop-up {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: rem(32) rem(98);
+      justify-content: center;
+      max-width: 75%;
+      margin: 0 auto;
+    }
+
+    li {
+      margin: 0;
+      padding: 0;
+
+      &:last-of-type {
+        @include desktop-up {
+          position: absolute;
+          top: 0;
+          right: 0;
+          max-width: rem(200);
+        }
+      }
+
+      &.current_page_item {
+        a {
+          font-weight: 550;
+          &:after {
+            @media #{$xl} {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      @media #{$xl-m} {
+        width: 100%;
+      }
+    }
+
+    a {
+      display: inline-block;
+      margin: 0;
+      padding: rem(24) 0;
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      position: relative;
+      
+      &:after {
+        @media #{$xl} {
+          content: '';
+          width: 0;
+          height: rem(2);
+          position: absolute;
+          left: 0;
+          bottom: rem(20);
+          background-color: var(--primary);
+          @include transition();
+        }
+      }
+      &:hover, &:focus-visible {
+        &:after {
+          @media #{$xl} {
+            width: 100%;
+          }
+        }
+      }
+
+      @media #{$xl-m} {
+        width: 100%;
+        text-align: right;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &.is-nav-active {
+    .header__nav-inner {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    &::before {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  &.is-sticky {
+    .header__inner {
+      backdrop-filter: inherit;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    
+  }
+  &--dark {
+    .header__inner {
+      border-bottom-color: var(--secondary);
+    }
+    .header__nav-links {
+      a{
+        color: var(--secondary);
+        &:after {
+          background-color: var(--secondary);
+        }
+      }
+    }
+    .mobile-menu-toggle {
+      color: var(--secondary);
+    }
+    .header__nav-inner {
+      @media #{$xl-m} {
+        background: rgba(236,232,218,0.5);
+      }
+    }
+  }
+}
+
+// Scroll Lock
+body.menu-open {
+  overflow: hidden;
+}

@@ -1,0 +1,52 @@
+@use "mixins/mixin" as *;
+@use "variables/spacing" as *;
+
+.container {
+  width: 100%;
+  padding: 0 rem(2 * $s12);
+
+  @media #{$md} {
+    padding: 0 rem(4 * $s10);
+  }
+
+  @media #{$xl} {
+    max-width: rem(calc($s1 * 1728));
+    padding: 0 rem(2 * $s32);
+    margin: 0 auto;
+  }
+
+  &--sm {
+    @media #{$xl} {
+      padding: 0 rem($s180);
+    }
+  }
+
+  &--md {
+    @media #{$xl} {
+      padding: 0 rem($s20 * 7);
+    }
+  }
+
+  &--mw920 {
+    max-width: rem(920);
+    margin: 0 auto;
+  }
+
+  &--lg {
+    max-width: unset;
+    padding: 0;
+  }
+  &--xl {
+    padding: 0;
+    @media #{$md} {
+      padding: 0 rem(24);
+    }
+  }
+  &--xxl {
+    max-width: unset;
+    padding: 0 rem(8);
+      @media #{$xl} {
+          padding: 0 rem(24);
+      }
+  }
+}

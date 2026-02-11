@@ -1,0 +1,41 @@
+@use "mixins/utils" as *;
+@use "variables/spacing" as *;
+@use "mixins/mixin" as *;
+
+@mixin desktop-h2 {
+  text-align: center;
+  font-size: fluid(48, 84, 393, 1728);
+  font-style: normal;
+  letter-spacing: 0;
+  line-height: 1.07;
+
+  @media #{$lg} {
+    line-height: 0.9524;
+  }
+}
+
+@mixin desktop-body {
+  font-size: fluid(16, 20, 393, 1728);
+  font-weight: 580;
+  line-height: 1.07;
+  letter-spacing: 0;
+  text-align: center; 
+
+  @media #{$lg} {
+    line-height: 4;
+  }
+}
+
+@mixin desktop-lg-body {
+  font-size: fluid(24, 48, 393, 1728);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.07;
+  text-align: center;
+  letter-spacing: 0;
+
+  @media #{$lg} {
+    line-height: 1.1042;
+    font-weight: 750;
+  }
+}

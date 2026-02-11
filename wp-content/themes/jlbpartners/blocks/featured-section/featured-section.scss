@@ -1,0 +1,388 @@
+@use "../../styles/mixins/mixin" as *;
+.jlb.featured-projects {
+    padding: rem(56) 0 rem(80) 0;
+    background-color: var(--primary);
+    position: relative;
+    z-index: 1;
+
+    @media #{$lg} {
+        padding: rem(120) 0 rem(120);
+    }
+    @media #{$xl} {
+        padding:  0 0 rem(120);
+    }
+
+    // Title
+    // ========================================================================
+    .featured-projects__title {
+        font-size: rem(48);
+        font-weight: 400;
+        color: var(--secondary);
+        text-align: center;
+        margin: 0 0 rem(54);
+        line-height: 107%;
+
+        @media #{$xl} {
+            font-size: rem(84);
+            margin-bottom: rem(130);
+            line-height: rem(80);
+        }
+    }
+
+    // Wrapper
+    // ========================================================================
+    .featured-projects__wrapper {
+        @media #{$xl}{
+            overflow: hidden;
+            padding: 0 rem(96);
+        };
+        .featured-projects__panels{
+            display: flex;
+            height: auto;
+            gap: 0;
+        }
+
+        // Slick Dots (Mobile Slider)
+        .slick-dots {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            bottom: rem(-44);
+            gap: rem(6);
+
+            li {
+                width: rem(10);
+                height: rem(16);
+                margin: 0;
+                transition: width 0.3s ease;
+
+                button {
+                    padding: 0;
+                    width: 100%;
+                    height: 100%;
+
+                    &::before {
+                        content: '';
+                        display: block;
+                        width: rem(8);
+                        height: rem(8);
+                        background-color: var(--tag-dark);
+                        border-radius: rem(20);
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        opacity: 1;
+                        transition: all 0.3s ease;
+                    }
+                    &:hover {
+                        &:before {
+                            background-color: var(--tag);
+                        }
+                    }
+                }
+
+                &.slick-active {
+                    width: rem(32);
+
+                    button::before {
+                        width: rem(32);
+                        background-color: var(--secondary);
+                    }
+                }
+            }
+        }
+
+        .slick-track,
+        .slick-list {
+            width: 100%;
+            min-width: 100%;
+        }
+    }
+
+    // Card
+    // ========================================================================
+    .featured-projects__card {
+        position: relative;
+        transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        background-color: var(--primary);
+        display: flex;
+        gap: rem(25);
+        height: rem(412);
+        padding-left: rem(30);
+        @media #{$xl} {
+            height: rem(618);
+            gap: 0;
+            padding-left: 0;
+        }
+        @media #{$xxxl}{
+            height: rem(918);
+            max-height: 95vh;
+        }
+
+        &:not(.active) {
+
+            .featured-projects__figure {
+                @media #{$xl} {
+                    opacity: 0;
+                    visibility: hidden;
+                    pointer-events: none;
+                    max-width: 0;
+                }
+            }
+            &:after{
+                content: '';
+                width: rem(1);
+                height: 100%;
+                background-color: var(--secondary);
+                opacity: 0.4;
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+            .featured-projects__btn{
+                @media #{$xl}{
+                    opacity: 0.4;
+                }
+            }
+        }
+        &.active {
+            flex-grow: 1;
+            @media #{$xl}{
+                max-width: 100vw;
+            }
+            .featured-projects__figure{
+                @media #{$xl}{
+                    max-width: var(--width, 100%);
+                }
+            }
+            .featured-projects__name{
+                @media #{$xl} {
+                    padding-top: rem(28);
+                }
+                &::before {
+                    opacity: 1;
+                }
+            }
+            .featured-projects__link {
+               opacity: 1;
+               transform: scale(1);
+            }
+        }
+        &:has(.fill-link:hover),&:has(.fill-link:focus) {
+            .featured-projects__link {
+                opacity: 1;
+                transform: scale(1);
+                background-color: rgba(34,33,25,.64);
+            }
+        }
+    }
+    .featured-projects__link-mobile {
+        opacity: 0;
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        cursor: pointer;
+        @media #{$xl} {
+            display: none;
+        }
+    }
+
+    // Article (Always Visible)
+    // ========================================================================
+    .featured-projects__article {
+        height: auto;
+        background-color: var(--primary);
+
+        @media #{$xl} {
+            width: rem(80);
+            max-width: rem(80);
+            flex-grow: 1;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        @media #{$xxxl} {
+            width: rem(163);
+            max-width: rem(163);
+        }
+    }
+
+    // Button
+    // ========================================================================
+    .featured-projects__btn {
+        width: rem(17);
+        height: 100%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        @media #{$xl} {
+            width: 100%;
+        }
+    }
+
+    // Heading
+    // ========================================================================
+    .featured-projects__heading {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .featured-projects__name {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        color: var(--secondary);
+        font-size: rem(24);
+        font-weight: 400;
+        line-height: 136%;
+        transition: font-weight 0.3s ease;
+        white-space: nowrap;
+        margin: 0;
+        position: relative;
+
+        @media #{$xl} {
+            font-size: rem(36);
+            @include transition;
+        }
+        @media #{$xxxl} {
+            font-size: rem(48);
+        }
+        &::before {
+            @media #{$xl} {
+                content: '';
+                width: rem(12);
+                height: rem(12);
+                border-radius: 50%;
+                background-color: var(--secondary);
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                opacity: 0;
+                @include transition;
+            }
+        }
+    }
+
+    // Description
+    // ========================================================================
+    .featured-projects__description {
+        display: flex;
+        flex-direction: column;
+        gap: rem(4);
+
+        @media #{$xl} {
+            gap: rem(44);
+        }
+        & > span {
+            &:not(:first-child) {
+                @media #{$xl} {
+                position: relative;
+                    &::before {
+                        content: '';
+                        width: 100%;
+                        height: rem(1);
+                        background-color: var(--secondary);
+                        position: absolute;
+                        bottom: rem(-22);
+                    }
+                }
+            }
+        }
+    }
+
+    .featured-projects__location,
+    .featured-projects__units {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        color: var(--secondary);
+        font-size: rem(11);
+        font-weight: 580;
+        line-height: 136%;
+        transition: font-weight 0.3s ease;
+        white-space: nowrap;
+        background-color: var(--tag);
+        padding: rem(7) rem(2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media #{$xl} {
+            font-size: rem(20);
+            background-color: transparent;
+            font-family: var(--secondary-font);
+        }
+    }
+
+    // Figure (Image Container)
+    // ========================================================================
+    .featured-projects__figure {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin: 0;
+        opacity: 1;
+        visibility: visible;
+        transition: max-width 0.6s ease;
+        @media #{$xl} {
+            max-width: 0;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            @media #{$xl}{
+                min-width: var(--width, 100%);
+            }
+        }
+    }
+
+    // Link (Centered on Image)
+    // ========================================================================
+    .featured-projects__link {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: inline-flex;
+        align-items: center;
+        gap: rem(8);
+        padding: rem(14) rem(32);
+        backdrop-filter: blur(rem(60));
+        color: var(--white);
+        text-decoration: none;
+        font-size: rem(13);
+        font-weight: 500;
+        letter-spacing: rem(0.5);
+        border-radius: rem(2);
+        background-color: rgba(34, 33, 25, 0.32);
+
+        transition: all 0.3s ease;
+        display: none;
+
+        @media #{$xl} {
+            font-size: rem(20);
+            padding: rem(21) rem(24);
+            display: inline-flex;
+            white-space: nowrap;
+            opacity: 0;
+            transform: scale(0);
+        }
+        &:hover,&:focus{
+            background: rgba(34,33,25,.64);
+        }
+
+        svg {
+            width: rem(18);
+            height: rem(18);
+        }
+    }
+}

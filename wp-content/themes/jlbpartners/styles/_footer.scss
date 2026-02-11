@@ -1,0 +1,238 @@
+@use "mixins/mixin" as *;
+@use "types" as *;
+
+// Footer Component
+// ============================================================================
+
+.footer {
+  background-color: var(--primary-dark);
+
+  @media #{$xl-m} {
+    padding: rem(120) 0 rem(115);
+  }
+
+  // Wrapper
+  // ==========================================================================
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: rem(58);
+
+    @include desktop-up {
+      flex-direction: row;
+      gap: 0;
+    }
+  }
+
+  // Logo Column
+  // ==========================================================================
+  &__col-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: rem(60);
+
+    @include desktop-up {
+      padding: rem(87) rem(30) rem(68) 0;
+      align-items: flex-start;
+      gap: rem(74);
+      border-right: rem(1) solid var(--primary);
+      max-width: 29%;
+      width: 29%;
+    }
+  }
+
+  &__logo {
+    display: block;
+
+    img {
+      width: rem(100);
+      height: auto;
+    }
+  }
+
+  &__address {
+    @include desktop-body;
+
+    line-height: 1.36;
+    color: var(--primary);
+    font-size: rem(16);
+    font-weight: 400;
+
+    @include desktop-up {
+      text-align: left;
+      line-height: rem(41);
+      font-size: rem(18);
+    }
+    a[href^="tel:"] {
+      text-decoration-color: transparent;
+      &:hover, &:focus {
+        text-decoration-color: var(--primary);
+      }
+      
+    }
+  }
+
+  // Navigation
+  // ==========================================================================
+  &__nav-wrapper {
+    @include desktop-up {
+      padding: rem(82) 0 rem(68) rem(84);
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      gap: rem(130) rem(32);
+      max-width: 71%;
+      width: 71%;
+    }
+  }
+
+  &__nav {
+    display: none;
+
+    @include desktop-up {
+      display: grid;;
+      grid-template-columns: repeat(5, 1fr);
+      gap: rem(32);
+      justify-content: space-between;
+    }
+  }
+
+  &__col-menu {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        &:not(:last-child) {
+          margin-bottom: rem(3);
+        }
+
+        a {
+          font-size: rem(18);
+          color: var(--primary);
+          text-decoration: none;
+          font-weight: 750;
+          letter-spacing: 0;
+          line-height: 1;
+
+          @include transition;
+
+          &:hover, &.is-active {
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+  }
+
+  &__menu-title {
+    font-size: rem(18);
+    font-weight: 750;
+    line-height: 1;
+    letter-spacing: rem(1.26);
+    text-transform: uppercase;
+    color: var(--primary);
+    text-align: left;
+    margin-bottom: rem(43);
+
+    &.is-active {
+      text-decoration: underline;
+    }
+
+    a {
+      text-decoration: none;
+      position: relative;
+      @include transition;
+      &:after {
+        content: '';
+        width: 0;
+        height: rem(2);
+        position: absolute;
+        left: 0;
+        bottom: rem(-3);
+        background-color: var(--primary);
+        @include transition();
+      }
+
+      &:hover,&:focus {
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  // Bottom Section
+  // ==========================================================================
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(58);
+
+    @include desktop-up {
+      align-items: flex-start;
+      gap: 0;
+      opacity: 0.7;
+      margin-left: auto;
+    }
+  }
+
+  &__privacy {
+    @include desktop-body;
+
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    gap: rem(5);
+    color: var(--primary);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    font-weight: 400;
+
+    @include desktop-up {
+      font-size: rem(18);
+      line-height: 2.34;
+      text-align: left;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    img {
+      @include desktop-up {
+        display: none;
+      }
+    }
+  }
+
+  &__copyright_mobile {
+    @include desktop-body;
+
+    color: var(--primary);
+    margin: 0;
+    line-height: 1.36;
+    font-weight: 400;
+
+    @include desktop-up {
+      display: none;
+    }
+  }
+
+  &__copyright_desktop {
+    display: none;
+    font-size: rem(18);
+    color: var(--primary);
+    margin: 0;
+    line-height: 2.34;
+    letter-spacing: 0;
+
+    @include desktop-up {
+      display: block;
+    }
+  }
+}

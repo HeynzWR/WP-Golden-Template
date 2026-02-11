@@ -1,0 +1,29 @@
+@use "mixin" as *;
+
+@mixin l-round-full {
+  border-radius: rem(100);
+}
+
+@mixin max-w-800 {
+  max-width: rem(800);
+  margin-inline: auto;
+}
+
+@mixin text-center {
+  text-align: center;
+}
+
+@mixin grid-2-cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@mixin grid-3-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@mixin grid-4-cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}

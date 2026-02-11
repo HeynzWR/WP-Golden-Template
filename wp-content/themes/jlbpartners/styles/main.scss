@@ -1,0 +1,22 @@
+$body-size: 16;
+/* stylelint-disable-next-line wrap-rem-on-px/wrap-rem-on-px */
+$body-font-size: 16px;
+
+// Variables and mixins
+@use "variables/fonts";
+@use "variables/colors";
+@use "mixins/mixin";
+
+// Vendors
+@use "vendor/aos";
+
+// Styles
+@use "reset";
+@use "base";
+@use "generic";
+@use "footer";
+@use "header";
+@use "independent";
+@use "form";
+@use "containers";
+@use "types";

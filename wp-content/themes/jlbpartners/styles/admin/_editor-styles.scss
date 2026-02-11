@@ -1,0 +1,186 @@
+/**
+ * Editor Styles Wrapper
+ * 
+ * This file scopes frontend styles to the editor canvas/iframe
+ * to prevent conflicts with WordPress admin styles.
+ *
+ * @package StudioSwift
+ */
+
+/* ============================================
+   Block Editor Canvas Wrapper
+   ============================================ */
+
+/**
+ * Target the block editor canvas (where blocks are rendered)
+ * This ensures frontend styles only apply to the preview area
+ */
+ .editor-styles-wrapper {
+	/* Inherit frontend typography and spacing */
+	font-family: inherit;
+	line-height: inherit;
+}
+
+/* Ensure block previews use frontend styles */
+.editor-styles-wrapper .acf-block-preview,
+.editor-styles-wrapper .acf-block-body {
+	/* Reset any admin overrides */
+	all: revert;
+	
+	/* Allow frontend CSS to take over */
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	color: inherit;
+}
+
+/* ============================================
+   Preview Mode Specific Styles
+   ============================================ */
+
+/**
+ * When blocks are in preview mode, ensure they render
+ * as closely to the frontend as possible
+ */
+.acf-block-preview iframe {
+	/* Remove any admin styling from iframe */
+	border: none;
+	box-shadow: none;
+}
+
+/* Ensure full-width blocks display properly in editor */
+.editor-styles-wrapper .alignfull {
+	max-width: none;
+	width: 100vw;
+	margin-left: calc(-50vw + 50%);
+	margin-right: calc(-50vw + 50%);
+}
+
+/* ============================================
+   Component Preview Enhancements
+   ============================================ */
+
+/**
+ * Make sure component containers don't have admin padding
+ */
+.editor-styles-wrapper .acf-block-component {
+	margin: 0;
+	padding: 0;
+}
+
+/**
+ * Ensure headings use frontend styles, not admin styles
+ */
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4,
+.editor-styles-wrapper h5,
+.editor-styles-wrapper h6 {
+	font-family: var(--font-primary, inherit);
+	font-weight: inherit;
+	line-height: inherit;
+	margin: revert;
+}
+
+/**
+ * Ensure paragraphs use frontend styles
+ */
+.editor-styles-wrapper p {
+	font-family: var(--font-secondary, inherit);
+	font-size: inherit;
+	line-height: inherit;
+	margin: revert;
+}
+
+/**
+ * Ensure buttons use frontend styles
+ */
+.editor-styles-wrapper button,
+.editor-styles-wrapper .button,
+.editor-styles-wrapper a.button {
+	all: revert;
+	font-family: inherit;
+}
+
+/* ============================================
+   Admin Sidebar - Keep Admin Styles
+   ============================================ */
+
+/**
+ * Ensure the block inspector sidebar retains admin styles
+ */
+.block-editor-block-inspector,
+.interface-interface-skeleton__sidebar,
+.edit-post-sidebar {
+	/* These should NOT use frontend styles */
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 13px;
+	line-height: 1.4;
+}
+
+/* ============================================
+   Block Toolbar - Keep Admin Styles
+   ============================================ */
+
+.block-editor-block-toolbar,
+.block-editor-block-contextual-toolbar {
+	/* Toolbar should use admin styles */
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+/* ============================================
+   ACF Field Wrapper - Keep Admin Styles
+   ============================================ */
+
+.acf-field,
+.acf-fields,
+.acf-tab-wrap {
+	/* ACF fields should use admin styles */
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 13px;
+}
+
+/* ============================================
+   Preview Placeholder States
+   ============================================ */
+
+/**
+ * Style empty/placeholder states in preview mode
+ */
+.acf-block-preview .acf-block-fields {
+	/* Admin styling for field placeholders */
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 14px;
+	color: #757575;
+	padding: 20px;
+	background: #f0f0f1;
+	border-radius: 4px;
+	text-align: center;
+}
+
+/* ============================================
+   Responsive Preview
+   ============================================ */
+
+/**
+ * Ensure responsive preview modes work correctly
+ */
+@media (max-width: 781px) {
+	.editor-styles-wrapper .alignfull {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+}
+
+/* ============================================
+   Dark Mode Support (if enabled)
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+	.editor-styles-wrapper {
+		/* Frontend colors should still apply */
+		color-scheme: light;
+	}
+}
+

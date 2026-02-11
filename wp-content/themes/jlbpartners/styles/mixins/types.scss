@@ -1,0 +1,306 @@
+@use "mixin" as *;
+
+// ============================================
+// Typography Mixins
+// ============================================
+
+// H1
+@mixin l-h1-mobile {
+  font-family: var(--secondary-font);
+  font-size: rem(40);
+  font-weight: 400;
+  line-height: 100%;
+}
+
+@mixin l-h1-desktop {
+  font-family: var(--secondary-font);
+  font-size: rem(65);
+  font-weight: 400;
+  line-height: 100%;
+}
+
+// H2
+@mixin l-h2-mobile {
+  font-family: var(--secondary-font);
+  font-size: rem(30);
+  font-weight: 400;
+  line-height: 100%;
+}
+
+@mixin l-h2-desktop {
+  font-family: var(--secondary-font);
+  font-size: rem(48);
+  font-weight: 400;
+  line-height: 100%;
+}
+
+// H3
+@mixin l-h3-mobile {
+  font-family: var(--primary-font);
+  font-size: rem(28);
+  font-weight: 600;
+  line-height: 110%;
+}
+
+@mixin l-h3-desktop {
+  font-family: var(--primary-font);
+  font-size: rem(36);
+  font-weight: 600;
+  line-height: 110%;
+}
+
+// H4
+@mixin l-h4-desktop {
+  font-family: var(--primary-font);
+  font-size: rem(28);
+  font-weight: 600;
+  line-height: 120%;
+}
+
+// H5
+@mixin l-h5-desktop {
+  font-family: var(--secondary-font);
+  font-size: rem(24);
+  font-weight: 400;
+  line-height: 110%;
+}
+
+// Body XL
+@mixin l-body-xl-mobile {
+  font-family: var(--secondary-font);
+  font-size: rem(24);
+  font-weight: 400;
+  line-height: 140%;
+}
+
+@mixin l-body-xl-desktop {
+  font-family: var(--secondary-font);
+  font-size: rem(36);
+  font-weight: 400;
+  line-height: 140%;
+}
+
+// Body L
+@mixin l-body-l-mobile {
+  font-family: var(--primary-font);
+  font-size: rem(20);
+  font-weight: 600;
+  line-height: 130%;
+}
+
+@mixin l-body-l-desktop {
+  font-family: var(--primary-font);
+  font-size: rem(24);
+  font-weight: 600;
+  line-height: 130%;
+}
+
+// Body M
+@mixin l-body-m-mobile {
+  font-family: var(--primary-font);
+  font-size: rem(18);
+  font-weight: 500;
+  line-height: 140%;
+}
+
+@mixin l-body-m-desktop {
+  font-family: var(--primary-font);
+  font-size: rem(20);
+  font-weight: 500;
+  line-height: 140%;
+}
+
+// Body S
+@mixin l-body-s-mobile {
+  font-family: var(--primary-font);
+  font-size: rem(16);
+  font-weight: 400;
+  line-height: 120%;
+}
+
+@mixin l-body-s-desktop {
+  font-family: var(--primary-font);
+  font-size: rem(18);
+  font-weight: 400;
+  line-height: 140%;
+}
+
+// Body XS
+@mixin l-body-xs-desktop {
+  font-family: var(--primary-font);
+  font-size: rem(16);
+  font-weight: 700;
+  line-height: 120%;
+}
+
+// Body XXS
+@mixin l-body-xxs-desktop {
+  font-family: var(--primary-font);
+  font-size: rem(14);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+// Eyebrow L
+@mixin l-eyebrow-l-desktop {
+  font-family: var(--primary-font);
+  font-size: rem(20);
+  font-weight: 700;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+
+// Eyebrow M
+@mixin l-eyebrow-m-desktop {
+  font-family: var(--primary-font);
+  font-size: rem(18);
+  font-weight: 600;
+  line-height: 110%;
+  text-transform: uppercase;
+}
+
+// Eyebrow S
+@mixin l-eyebrow-s-mobile {
+  font-family: var(--tertiary-font);
+  font-size: rem(16);
+  font-weight: 500;
+  line-height: 150%;
+  text-transform: uppercase;
+}
+
+@mixin l-eyebrow-s-desktop {
+  font-family: var(--primary-font);
+  font-size: rem(16);
+  font-weight: 500;
+  letter-spacing: rem(0.32);
+  line-height: 110%;
+}
+
+// ============================================
+// Typography Classes
+// ============================================
+
+// H1
+.l-mobile-h1 {
+  @include l-h1-mobile;
+}
+
+@include desktop-up {
+  .l-desktop-h1 {
+    @include l-h1-desktop;
+  }
+}
+
+// H2
+.l-mobile-h2 {
+  @include l-h2-mobile;
+}
+
+@include desktop-up {
+  .l-desktop-h2 {
+    @include l-h2-desktop;
+  }
+}
+
+// H3
+.l-mobile-h3 {
+  @include l-h3-mobile;
+}
+
+.l-desktop-h3 {
+  @include l-h3-desktop;
+}
+
+// H4
+.l-desktop-h4 {
+  @include l-h4-desktop;
+}
+
+// H5
+.l-desktop-h5 {
+  @include l-h5-desktop;
+}
+
+// Body XL
+.l-mobile-body-xl {
+  @include l-body-xl-mobile;
+}
+
+@include desktop-up {
+  .l-desktop-body-xl {
+    @include l-body-xl-desktop;
+  }
+}
+
+// Body L
+.l-mobile-body-l {
+  @include l-body-l-mobile;
+}
+
+.l-desktop-body-l {
+  @include l-body-l-desktop;
+}
+
+.l-body-l {
+  @include l-body-l-mobile;
+
+  @include desktop-up {
+    @include l-body-l-desktop;
+  }
+}
+
+// Body M
+.l-mobile-body-m {
+  @include l-body-m-mobile;
+}
+
+.l-desktop-body-m {
+  @include l-body-m-desktop;
+}
+
+// Body S
+.l-mobile-body-s {
+  @include l-body-s-mobile;
+}
+
+.l-desktop-body-s {
+  @include l-body-s-desktop;
+}
+
+// Body XS
+.l-desktop-body-xs {
+  @include l-body-xs-desktop;
+}
+
+// Body XXS
+.l-desktop-body-xxs {
+  @include l-body-xxs-desktop;
+}
+
+// Eyebrow L
+.l-desktop-eyebrow-l {
+  @include l-eyebrow-l-desktop;
+}
+
+// Eyebrow M
+.l-desktop-eyebrow-m {
+  @include l-eyebrow-m-desktop;
+}
+
+// Eyebrow S
+.l-mobile-eyebrow-s {
+  @include l-eyebrow-s-mobile;
+}
+
+.l-desktop-eyebrow-s {
+  @include l-eyebrow-s-desktop;
+}
+
+.l-eyebrow-s {
+  @include l-eyebrow-s-mobile;
+
+  @include desktop-up {
+    @include l-eyebrow-s-desktop;
+  }
+}

@@ -1,0 +1,180 @@
+@use "sass:math";
+
+$body-size: 16;
+/* stylelint-disable-next-line wrap-rem-on-px/wrap-rem-on-px */
+$body-font-size: 16px;
+
+@function em($value, $base: 16) {
+  $new-value: calc($value / $base * 1em);
+
+  @return $new-value;
+}
+
+@function rem($value) {
+  $new-value: calc($value / $body-size * 1rem);
+
+  @return $new-value;
+}
+
+@function px2em($px) {
+  @return calc($px / $body-font-size) * 1em;
+}
+
+@mixin font-size($font-size, $line-height: false) {
+  font-size: px2em($font-size);
+
+  @if $line-height != false {
+    line-height: calc($line-height / $font-size);
+  }
+}
+
+// line clamp
+@mixin clamp-lines($lineCount) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lineCount;
+}
+
+// Transition
+@mixin transition(
+  $properties: all,
+  $duration: 0.3s,
+  $timing-function: ease-in-out
+) {
+  transition: $properties $duration $timing-function;
+}
+
+@function rnd($number, $places: 0) {
+  $factor: math.pow(10, $places);
+
+  @return math.div(math.round($number * $factor), $factor);
+}
+
+// // mixin for finding col width
+@mixin col-width($card-number, $gap) {
+  $card-ratio: rnd(math.percentage(math.div(1, $card-number)), 5);
+  $total-gap: ($gap * ($card-number - 1));
+  $individual-gap: math.div($total-gap, $card-number);
+
+  width: calc(#{$card-ratio} - (#{$individual-gap}) * rem(1));
+
+  @debug $gap, $card-number;
+  @debug $total-gap;
+}
+
+/* stylelint-disable wrap-rem-on-px/wrap-rem-on-px */
+$default-min-bp: 390;
+$default-max-bp: 1440;
+/* stylelint-enable wrap-rem-on-px/wrap-rem-on-px */
+
+/*
+USAGE:
+font-size: fluid(12, 62); : from rem(12)@380px to  rem(62)@1440px
+gap: fluid(10, 33, 992);  : from rem(10)@991px to  rem(33)@1440px
+margin-right: fluid(32, 65, 320, 2560);  : from rem(32)@320px to  rem(65)@2560px
+*/
+@function fluid(
+  $min-px,
+  $max-px,
+  $min-bp: $default-min-bp,
+  $max-bp: $default-max-bp
+) {
+  $slope: math.div(($max-px - $min-px), ($max-bp - $min-bp));
+  $intercept-px: rnd($min-px - ($slope * $min-bp), 5);
+  $slope-vw: rnd($slope * 100, 5);
+
+  @return clamp(
+    rem($min-px),
+    calc(#{$slope-vw}vw + rem($intercept-px)),
+    rem($max-px)
+  );
+}
+
+@function vw($px-value, $viewport-width: 1440) {
+  @return calc($px-value / $viewport-width * 100vw);
+}
+
+@mixin font-vw($font-size) {
+  @media #{$xxxl} {
+    font-size: vw($font-size);
+  }
+}
+
+// hide and show
+@mixin is-hidden() {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+@mixin is-visible() {
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+}
+
+/*
+AUTOFILL
+
+USAGE:
+@include mixin.autofill(background-color, text-color);
+@include mixin.autofill;
+
+Note: Call this mixin in the wrapper or container to where you intend to manipulate the
+      default chrome autofill styles for input, textarea and select elements.
+*/
+@mixin autofill($background-color: #fff, $text-color: #000) {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 rem(1000) $background-color inset;
+    -webkit-text-fill-color: $text-color;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+/* stylelint-disable */
+// Mobile
+$xsm: "screen and (min-width:" + (320px) + ")";
+$sm: "screen and (min-width:" + (393px) + ")";
+$sml: "screen and (min-width:" + (480px) + ")";
+
+// Tablet
+$xmd: "screen and (min-width:" + (720px) + ")";
+$md: "screen and (min-width:" + (768px) + ")";
+$lg: "screen and (min-width:" + (991px) + ")";
+$xlg: "screen and (min-width:" + (1024px) + ")";
+
+// Desktop
+$xl: "screen and (min-width:" + (1199px) + ")";
+$xxl: "screen and (min-width:" + (1320px) + ")";
+$xxll: "screen and (min-width:" + (1441px) + ")";
+$xxxl: "screen and (min-width:" + (1540px) + ")";
+$vls: "screen and (min-width:" + (1729px) + ")";
+$vl: "screen and (min-width:" + (1920px) + ")";
+
+// Screen max-width
+$sm-m: "screen and (max-width:" + (479px) + ")";
+$md-m: "screen and (max-width:" + (767px) + ")";
+$lg-m: "screen and (max-width:" + (990px) + ")";
+$xl-m: "screen and (max-width:" + (1198px) + ")";
+/* stylelint-enable */
+
+@mixin tablet-up {
+  @media #{$xmd} {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media #{$xl} {
+    @content;
+  }
+}

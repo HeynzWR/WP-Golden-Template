@@ -1,0 +1,19 @@
+@use "../../styles/mixins/mixin" as *;
+.jlb.image-block {
+    background-color: var(--primary);
+    padding: rem(39) 0 rem(10);
+    margin: 0 rem(-24);
+    @media #{$md}{
+        margin: 0;
+    }
+    @media #{$xl}{
+        padding-bottom: 0;
+    }
+    .image-block__figure{
+        max-width: rem(1054);
+        margin: auto;
+        @media #{$xl}{
+            clip-path: inset(0 0);
+        }
+    }
+}

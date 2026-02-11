@@ -1,0 +1,269 @@
+@use "mixins/mixin" as *;
+@use "types" as *;
+
+.l-btn {
+  @include desktop-body;
+  @include transition;
+
+  display: inline-block;
+  padding: fluid(8, 15, 393, 1728) fluid(19, 23, 393, 1728);
+  color: var(--primary);
+  border: rem(1) solid var(--primary);
+  text-decoration: none;
+  line-height: 2;
+  font-size: fluid(16, 23, 393, 1728);
+  font-weight: 400;
+
+  @media #{$lg} {
+    width: fit-content;
+    line-height: 1.3913;
+  }
+
+  &:hover {
+    background: var(--primary-dark);
+    color: var(--primary);
+  }
+  &--light-hover {
+    &:hover,
+    &:focus,
+    &:active {
+      background: var(--primary);
+      color: var(--secondary);
+    }
+  }
+  &--secondary{
+    background-color: var(--secondary);
+    color: var(--primary);
+  }
+  &--sm {
+    font-size: rem(16);
+    font-weight: 400;
+    line-height: rem(32);
+    @media #{$lg} {
+      font-size: rem(18);
+    }
+  }
+  &--secondary-outline {
+    border: rem(1) solid var(--secondary);
+    color: var(--secondary);
+  }
+  &--tiny {
+    font-size: rem(16);
+    line-height: rem(32);
+    padding-block: rem(8);
+  }
+}
+
+label {
+  font-size: 0;
+  line-height: 0;
+  text-decoration: none;
+}
+
+textarea {
+  resize: none;
+  outline: none;
+  height: rem(39);
+
+  @include desktop-up {
+    height: rem(139);
+  }
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder,
+input[type="email"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="number"]::placeholder,
+input[type="search"]::placeholder,
+input[type="password"]::placeholder,
+select::placeholder {
+  font-weight: 580;
+  font-family: var(--secondary-font);
+  font-size: rem(16);
+  line-height: 1.5;
+  color: var(--secondary);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="search"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  border: none;
+  border-bottom: rem(1) solid var(--secondary);
+  background-color: transparent;
+  color: var(--secondary);
+  font-size: rem(16);
+  font-weight: 580;
+  font-family: var(--secondary-font);
+  line-height: 1.5;
+  outline: none;
+  padding-bottom: rem(13);
+
+  @include desktop-up {
+    padding-bottom: rem(17);
+  }
+}
+
+input[type="submit"] {
+  font-size: rem(16);
+  line-height: 2;
+  background-color: var(--secondary);
+  color: var(--primary);
+  border: none;
+  padding: rem(10) rem(20);
+  cursor: pointer;
+  width: 100%;
+
+  @include transition;
+
+  @include desktop-up {
+    width: fit-content;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.is-two-column {
+  @include desktop-up {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(32);
+  }
+}
+
+.jlb.rich-text-editor {
+  
+  &:has(form.wpcf7-form) {   
+    max-width: rem(1104);
+    margin: 0 auto;
+    padding: rem(46) rem(24) rem(58);
+
+    @include desktop-up {
+      padding: rem(63) rem(24) rem(116);
+    }
+  }
+
+  form.wpcf7-form {
+    p,
+    p:last-child {
+      font-size: unset;
+      line-height: unset;
+      font-weight: unset;
+      padding: unset;
+      text-align: unset;
+      max-width: unset;
+      margin: unset;
+      margin-bottom: rem(20);
+
+      &:has(input[type="submit"]) {
+        padding-top: rem(6);
+        margin-bottom: 0;
+        margin-top: rem(27);
+
+        @include desktop-up {
+          margin-top: rem(26);
+          padding: unset;
+        }
+      }
+
+      @include desktop-up {
+        margin-bottom: rem(36);
+      }
+    }
+
+    br {
+      display: none;
+    }
+
+    &.invalid .wpcf7-response-output,
+    &.failed .wpcf7-response-output {
+      border: none;
+      padding: 0;
+      margin: rem(24) 0 0;
+      color: var(--red);
+      font-family: var(--secondary-font);
+      position: absolute;
+      bottom: rem(-72);
+
+      @include desktop-up {
+        bottom: rem(-50);
+      }
+    }
+
+    &.submitting {
+      input[type=submit] {
+        opacity: 0.8;
+        pointer-events: none;
+      }
+
+      p:has(input[type=submit]) {
+        cursor: not-allowed;
+      }
+    }
+
+    &.sent {
+      input[type=submit] {
+        opacity: 0.8;
+        pointer-events: none;
+      }
+
+      p:has(input[type=submit]) {
+        cursor: not-allowed;
+      }
+
+      .wpcf7-response-output {
+        border: none;
+        border: none;
+        padding: 0;
+        margin: rem(24) 0 0;
+        color: var(--green);
+        font-family: var(--secondary-font);
+      }
+    }
+    
+    .wpcf7-not-valid-tip {
+      position: absolute;
+      bottom: rem(-50);
+    }
+
+    .wpcf7-spinner {
+      display: inline-block;
+      width: rem(24);
+      height: rem(24);
+      position: relative;
+      padding: 0;
+      border: none;
+      border-radius: 100%;
+      background-color: transparent;
+      
+      border: rem(3) solid var(--secondary-light);
+      border-top-color: var(--secondary);
+      
+      animation: cf7-spin 0.8s linear infinite;
+
+      &:before {
+        display: none;
+      }
+
+      @media #{$xl-m} {
+        margin: rem(24) auto;
+        display: block;
+      }
+    }
+  
+    @keyframes cf7-spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  
+  }
+}

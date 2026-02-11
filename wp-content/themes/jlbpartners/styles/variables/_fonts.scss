@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "Season Sans";
+  src: url("../../fonts/SeasonSans-TRIAL-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Season Mix";
+  src: url("../../fonts/SeasonMix-TRIAL-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Season Sans";
+  src: url("../../fonts/SeasonSans-Bold.woff2") format("woff2");
+  font-weight: 750;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --primary-font: "Season Sans", sans-serif;
+  --secondary-font: "Season Mix", sans-serif;
+  --tertiary-font: "Inter", sans-serif;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "jlbpartners",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "watch:scss": "sass --watch styles/main.scss:assets/css/frontend/main.css assets/css/frontend/projects-listing.scss:assets/css/frontend/projects-listing.css styles/single-project.scss:assets/css/frontend/single-project.css styles/backend.scss:assets/css/admin/backend.css blocks:blocks --style compressed",
+    "build:scss": "sass styles/main.scss:assets/css/frontend/main.css assets/css/frontend/projects-listing.scss:assets/css/frontend/projects-listing.css styles/single-project.scss:assets/css/frontend/single-project.css styles/backend.scss:assets/css/admin/backend.css blocks:blocks --style compressed",
+    "dev": "npm run watch:scss",
+    "build": "npm run build:scss"
+  },
+  "devDependencies": {
+    "sass": "^1.97.0"
+  }
+}

@@ -1,0 +1,52 @@
+@use "mixins/mixin" as *;
+
+html,
+body {
+  min-width: rem(320);
+  background-color: var(--primary);
+  color: var(--base);
+  font-family: var(--primary-font);
+  font-size: rem(16);
+  word-break: break-word;
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    text-size-adjust: none;
+  }
+}
+
+.section {
+  &--light {
+    background-color: var(--primary);
+    position: relative;
+  }
+}
+.site-main {
+  &--default {
+    padding-top: rem(97);
+    @media #{$xl}{
+      padding-top: rem(129);
+    }
+  }
+}
+
+
+/* Container base */
+[data-barba="container"] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  will-change: transform;
+  overflow: auto;
+  background-color: var(--primary);
+  -webkit-overflow-scrolling: touch;
+  &.is-transitioning {
+    overflow: hidden;
+  }
+}

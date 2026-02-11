@@ -1,0 +1,334 @@
+/**
+ * ACF Media Fetch - Modal and Button Styles
+ *
+ * @package JLBPartners
+ */
+
+// ==========================================================================
+// Fetch Button Styles
+// ==========================================================================
+
+.jlbpartners-fetch-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	margin-left: 8px;
+	padding: 0;
+	background: #2271b1;
+	border: 1px solid #2271b1;
+	border-radius: 4px;
+	color: #fff;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	vertical-align: middle;
+
+	&:hover {
+		background: #135e96;
+		border-color: #135e96;
+		transform: translateY(-1px);
+	}
+
+	&:active {
+		transform: translateY(0);
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
+	.dashicons {
+		width: 16px;
+		height: 16px;
+		font-size: 16px;
+		line-height: 1;
+
+		&-spin {
+			animation: jlbpartners-spin 1s linear infinite;
+		}
+	}
+}
+
+@keyframes jlbpartners-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+// ==========================================================================
+// Modal Styles
+// ==========================================================================
+
+.jlbpartners-metadata-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 999999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: jlbpartners-modal-fade-in 0.2s ease;
+
+	// Modal Overlay
+	&__overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.7);
+		backdrop-filter: blur(2px);
+		z-index: 1;
+	}
+
+	// Modal Content
+	&__content {
+		position: relative;
+		z-index: 2;
+		background: #fff;
+		border-radius: 8px;
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+		max-width: 600px;
+		width: 90%;
+		max-height: 80vh;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		animation: jlbpartners-modal-slide-up 0.3s ease;
+	}
+
+	// Modal Header
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 20px 24px;
+		border-bottom: 1px solid #ddd;
+		background: #f9f9f9;
+
+		h3 {
+			margin: 0;
+			font-size: 18px;
+			font-weight: 600;
+			color: #1d2327;
+		}
+	}
+
+	// Close Button
+	&__close {
+		background: transparent;
+		border: none;
+		font-size: 32px;
+		line-height: 1;
+		color: #50575e;
+		cursor: pointer;
+		padding: 0;
+		width: 32px;
+		height: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 4px;
+		transition: all 0.2s ease;
+
+		&:hover {
+			background: #e0e0e0;
+			color: #1d2327;
+		}
+	}
+
+	// Modal Body
+	&__body {
+		padding: 24px;
+		overflow-y: auto;
+		flex: 1;
+	}
+
+	// Modal Footer
+	&__footer {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 12px;
+		padding: 16px 24px;
+		border-top: 1px solid #ddd;
+		background: #f9f9f9;
+
+		.button {
+			padding: 8px 16px;
+			font-size: 14px;
+			height: auto;
+			line-height: 1.4;
+
+			&-primary {
+				background: #2271b1;
+				border-color: #2271b1;
+				color: #fff;
+
+				&:hover {
+					background: #135e96;
+					border-color: #135e96;
+				}
+			}
+		}
+	}
+}
+
+@keyframes jlbpartners-modal-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes jlbpartners-modal-slide-up {
+	from {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+// ==========================================================================
+// Status Indicator
+// ==========================================================================
+
+.jlbpartners-metadata-status {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 16px;
+	border-radius: 6px;
+	margin-bottom: 20px;
+	font-weight: 500;
+
+	&.has-data {
+		background: #e7f5ec;
+		border: 1px solid #00a32a;
+		color: #00a32a;
+	}
+
+	&.empty {
+		background: #fef2f2;
+		border: 1px solid #d63638;
+		color: #d63638;
+	}
+
+	.status-icon {
+		font-size: 20px;
+		line-height: 1;
+	}
+}
+
+// ==========================================================================
+// Metadata Preview
+// ==========================================================================
+
+.jlbpartners-metadata-preview {
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	padding: 16px;
+
+	label {
+		display: block;
+		font-weight: 600;
+		margin-bottom: 8px;
+		color: #1d2327;
+	}
+
+	.metadata-value {
+		background: #fff;
+		padding: 12px;
+		border-radius: 4px;
+		border: 1px solid #ddd;
+		color: #1d2327;
+		line-height: 1.6;
+		word-wrap: break-word;
+	}
+}
+
+// ==========================================================================
+// Empty State
+// ==========================================================================
+
+.jlbpartners-metadata-empty {
+	color: #50575e;
+	line-height: 1.6;
+
+	p {
+		margin-bottom: 12px;
+	}
+
+	ol {
+		margin: 12px 0 0 20px;
+		padding: 0;
+	}
+
+	li {
+		margin-bottom: 8px;
+	}
+
+	strong {
+		color: #1d2327;
+		font-weight: 600;
+	}
+}
+
+// ==========================================================================
+// Responsive Design
+// ==========================================================================
+
+@media (max-width: 768px) {
+	.jlbpartners-metadata-modal {
+		&__content {
+			width: 95%;
+			max-height: 90vh;
+		}
+
+		&__header {
+			padding: 16px;
+		}
+
+		&__body {
+			padding: 16px;
+		}
+
+		&__footer {
+			padding: 12px 16px;
+			flex-wrap: wrap;
+
+			.button {
+				flex: 1;
+				min-width: 120px;
+			}
+		}
+	}
+}
+
+// ==========================================================================
+// ACF Field Integration
+// ==========================================================================
+
+.acf-label {
+	label {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	.jlbpartners-fetch-btn {
+		flex-shrink: 0;
+	}
+}

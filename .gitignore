@@ -6,6 +6,25 @@ xmlrpc.php
 license.txt
 readme.html
 
+# Ignore everything in the root except the "wp-content" directory.
+!wp-content/
+
+# Ignore everything in the "wp-content" directory, except the "plugins",
+# "mu-plugins" and "themes" directories.
+wp-content/*
+!wp-content/mu-plugins/
+!wp-content/plugins/
+!wp-content/themes/
+
+# Ignore everything in the "plugins" directory, except the plugins you
+# specify (see the commented-out examples for hints on how to do this.)
+wp-content/plugins/*
+
+# Ignore everything in the "themes" directory, except the themes you
+# specify (see the commented-out examples for hints on how to do this.)
+wp-content/themes/*
+!wp-content/themes/golden-template/
+
 # WordPress Config
 wp-config.php
 wp-config-ddev.php
@@ -23,12 +42,18 @@ wp-content/upgrade/
 
 
 # Plugins (except our MU plugin)
-wp-content/plugins/
-!wp-content/mu-plugins/
+# The new rules above handle this more generally.
+# wp-content/plugins/
+# !wp-content/mu-plugins/
 
 # All themes except jlbpartners
-wp-content/themes/*/
-!wp-content/themes/jlbpartners/
+# The new rules above handle this more generally.
+# wp-content/themes/*/
+# !wp-content/themes/jlbpartners/
+
+# Rename script backups
+.backup_*/
+.last_backup_path
 
 # ddev
 .ddev/.global_commands/
@@ -65,8 +90,6 @@ yarn-error.log*
 node_modules/
 vendor/
 dist/
-composer.json
-composer.lock
 
 # Compiled files
 *.min.css

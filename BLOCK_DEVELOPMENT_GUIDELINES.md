@@ -1,8 +1,19 @@
-# JLB Partners Block Development Guidelines
+# Block Development Guidelines
+
+> **📌 IMPORTANT - Golden Template Usage**
+> 
+> This repository is a **golden template** for WordPress projects. Before creating blocks:
+> 1. **Run the rename script first**: `./rename-project.sh your-project-name`
+> 2. All references to "jlbpartners" will be updated to your project name
+> 3. Follow this guide using YOUR project name, not "jlbpartners"
+> 
+> See [RENAME-GUIDE.md](RENAME-GUIDE.md) for detailed rename instructions.
+
+---
 
 **AI-Agent Ready Block Creation System**
 
-This guide enables AI agents to automatically create complete, professional ACF blocks for the JLB Partners theme. Developers simply specify the block name and desired functionality, and the AI agent handles all implementation details following established patterns.
+This guide enables AI agents to automatically create complete, professional ACF blocks for your WordPress theme. Developers simply specify the block name and desired functionality, and the AI agent handles all implementation details following established patterns.
 
 ## 🤖 For AI Agents: How to Use This Guide
 
@@ -20,12 +31,12 @@ When a developer requests a new block, follow this process:
 Simply tell an AI agent:
 
 ```
-"Create a [BLOCK_NAME] block with [FUNCTIONALITY_LIST] using the JLB Partners guidelines"
+"Create a [BLOCK_NAME] block with [FUNCTIONALITY_LIST] using the block development guidelines"
 ```
 
 **Example:**
 ```
-"Create a testimonial-slider block with image, quote, author name, company, star rating, and navigation arrows using the JLB Partners guidelines"
+"Create a testimonial-slider block with image, quote, author name, company, star rating, and navigation arrows using the block development guidelines"
 ```
 
 The AI will generate all necessary files, register the block, and provide setup instructions.
@@ -564,25 +575,25 @@ require_once JLBPARTNERS_THEME_DIR . '/blocks/{block-name}/fields.php';
 
 **Format:**
 ```
-"Create a {block-name} block with {functionality-list} using the JLB Partners guidelines"
+"Create a {block-name} block with {functionality-list} using the block development guidelines"
 ```
 
 **Examples:**
 
 ```
-"Create a testimonial-card block with image, quote, author name, company, and star rating using the JLB Partners guidelines"
+"Create a testimonial-card block with image, quote, author name, company, and star rating using the block development guidelines"
 ```
 
 ```
-"Create a pricing-table block with title, price, features list, CTA button, and highlight option using the JLB Partners guidelines"
+"Create a pricing-table block with title, price, features list, CTA button, and highlight option using the block development guidelines"
 ```
 
 ```
-"Create a team-member block with photo, name, job title, bio, and social links using the JLB Partners guidelines"
+"Create a team-member block with photo, name, job title, bio, and social links using the block development guidelines"
 ```
 
 ```
-"Create a stats-counter block with icon, number, label, and animation trigger using the JLB Partners guidelines"
+"Create a stats-counter block with icon, number, label, and animation trigger using the block development guidelines"
 ```
 
 ### AI Agent Response Should Include:
@@ -644,7 +655,7 @@ require_once JLBPARTNERS_THEME_DIR . '/blocks/{block-name}/fields.php';
 
 ### Manual Testing (Developer Must Do)
 - [ ] Hard refresh editor (Cmd/Ctrl + Shift + R)
-- [ ] Block appears in "JLB Partners Components" category
+- [ ] Block appears in your theme's custom block category
 - [ ] All fields display and save correctly
 - [ ] Auto-population buttons appear and work
 - [ ] Preview matches frontend exactly
@@ -2277,20 +2288,25 @@ $block_css_map = array(
 **This is required or your block won't appear in the editor!**
 
 In `/inc/editor-customization.php`, add your block to the `jlbpartners_allowed_block_types()` function:
-
 ```php
-function jlbpartners_allowed_block_types( $allowed_blocks, $editor_context ) {
-    // Allow only JLB Partners ACF blocks.
+/**
+ * Filter which blocks can be used in the editor
+ */
+function your_theme_allowed_block_types( $allowed_blocks, $editor_context ) {
+    // Allow only your custom ACF blocks.
     return array(
         'acf/hero-section',
-        'acf/block-name', // ← ADD YOUR NEW BLOCK HERE
-        // ... other blocks
+        'acf/about',
+        'acf/title-block',
+        // ... add your blocks here
     );
 }
+add_filter( 'allowed_block_types_all', 'your_theme_allowed_block_types', 10, 2 );
 ```
 
-**Why is this needed?**  
-The JLB Partners theme intentionally filters out all default WordPress blocks (core blocks, third-party blocks) to provide a clean, component-based editing experience. This filter controls which blocks are visible in the block inserter.
+**Purpose:**
+
+This theme intentionally filters out all default WordPress blocks (core blocks, third-party blocks) to provide a clean, component-based editing experience. This filter controls which blocks are visible in the block inserter.
 
 **Common Issue:**  
 If you register a block but forget to add it to this filter, the block will be registered in ACF and WordPress, but **will not appear in the block inserter UI**. Always add new blocks to this list!
@@ -2710,9 +2726,12 @@ function jlbpartners_allowed_block_types( $allowed_blocks, $editor_context ) {
 
 ### 6. Test Your Block
 
-1. **Refresh editor** (Cmd/Ctrl + Shift + R)
-2. **Add block** - Look for "Feature Card" in JLB Partners Components
-3. **Test auto-population** - Upload image, click fetch buttons for alt text
+1. **User Steps:**
+
+1. **Create page** - Pages → Add New
+2. **Add block** - Look for "Feature Card" in your theme's block category
+3. **Fill fields** - Add title, description, icon
+4. **Publish** - Click Publish buttons for alt text
 4. **Test preview** - Should match frontend exactly
 5. **Test accessibility** - Check with screen reader
 6. **Test responsive** - Check mobile/tablet layouts
@@ -2964,16 +2983,15 @@ echo $final_title;
 
 ---
 
-## Related Documentation
+## Additional Resources
 
-- [WordPress VIP Coding Standards](https://github.com/Automattic/VIP-Coding-Standards)
-- [WCAG 2.2 Guidelines](https://www.w3.org/WAI/WCAG22/quickref/)
-- [ACF Documentation](https://www.advancedcustomfields.com/resources/)
-- [JLB Partners Theme Documentation](README.md)
+- [WordPress Block Editor Handbook](https://developer.wordpress.org/block-editor/)
+- [ACF Block Documentation](https://www.advancedcustomfields.com/resources/)
+- [WordPress VIP Coding Standards](https://docs.wpvip.com/technical-references/vip-codebase/)
+- [Setup Guide](SETUP.md)
+- [Contributing Guidelines](CONTRIBUTING.md)
 
 ---
 
-**Last Updated**: January 2025  
-**Version**: 1.0.0  
-**Author**: JLB Partners Development Team
-
+**Golden Template Documentation**  
+*Part of the WordPress Golden Template Repository*.

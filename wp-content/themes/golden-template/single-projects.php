@@ -67,7 +67,7 @@ $next_project_image   = $next_post ? get_the_post_thumbnail_url( $next_post->ID,
 <main id="main" class="site-main">
 
 <div data-barba="wrapper">
-	<article id="project-<?php echo esc_attr( $project_id ); ?>" <?php post_class( .golden-template single-project' ); ?> data-barba="container" data-barba-namespace="project">
+	<article id="project-<?php echo esc_attr( $project_id ); ?>" <?php post_class( 'golden-template single-project' ); ?> data-barba="container" data-barba-namespace="project">
 		<section class="section section--hero">
 			<div class="golden-template hero hero--static hero--detail js-detail-hero">
 				<div class="hero__wrapper">

@@ -18,7 +18,6 @@ wp-content/*
 
 # Ignore everything in the "plugins" directory, except the plugins you
 # specify (see the commented-out examples for hints on how to do this.)
-wp-content/plugins/*
 
 # Ignore everything in the "themes" directory, except the themes you
 # specify (see the commented-out examples for hints on how to do this.)

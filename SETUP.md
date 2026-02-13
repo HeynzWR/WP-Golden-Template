@@ -82,6 +82,10 @@ ddev config --project-type=wordpress --php-version=8.1
 ddev start
 
 # Import database (if you have one)
+# Option 1: Use the import script (recommended - handles renaming automatically)
+./import-database.sh [your-project-name] [database-file.sql.gz]
+
+# Option 2: Direct DDEV import (if you haven't renamed the project yet)
 ddev import-db --file=your-database.sql.gz
 ```
 
@@ -170,9 +174,32 @@ Visit your site - you should see a debug panel in the bottom-left showing which 
 4. Add a block and configure it
 5. Preview and publish
 
-### 9. Optional: Database Search & Replace
+### 9. Import Database (if you have one)
 
-If you renamed the project but have an existing database with old references:
+If you have an existing database dump to import:
+
+```bash
+# Make script executable
+chmod +x import-database.sh
+
+# Import with default "golden-template" naming
+./import-database.sh
+
+# OR import and rename to your project name (run AFTER rename-project.sh)
+./import-database.sh your-project-name your-database.sql.gz
+```
+
+**The import script automatically:**
+- ✅ Renames table names (e.g., `wp_jlbpartners_logs` → `wp_your_project_logs`)
+- ✅ Updates option names and settings
+- ✅ Updates theme references
+- ✅ Handles constants and function prefixes
+
+**Note:** If you've already run `rename-project.sh`, the import script will automatically rename database references to match your new project name.
+
+### 10. Optional: Manual Database Search & Replace
+
+If you imported a database before running the rename script, you may need to manually update references:
 
 ```bash
 # Using WP-CLI
@@ -192,7 +219,7 @@ wp search-replace 'golden-template' 'your-project-name' --all-tables
 - Widget settings
 - Theme mods
 
-### 10. Clean Up
+### 11. Clean Up
 
 ```bash
 # Remove backup if rename was successful

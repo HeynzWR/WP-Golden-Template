@@ -11,13 +11,6 @@
         initGalleryLightbox();
     });
 
-    // Also initialize after Barba.js page transitions
-    if (typeof barba !== 'undefined') {
-        barba.hooks.afterEnter(({ next }) => {
-            initGalleryLightbox();
-        });
-    }
-
     function initGalleryLightbox() {
         // Remove existing lightbox if it exists
         $('.gallery-lightbox').remove();

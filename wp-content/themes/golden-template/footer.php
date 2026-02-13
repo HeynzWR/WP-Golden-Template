@@ -1,10 +1,6 @@
 
 </main>
 
-<?php
-// Hide footer on single project details pages
-if ( ! is_singular( 'projects' ) ) :
-?>
 <footer class="footer">
   <div class="container">
     <div class="footer__wrapper">
@@ -56,7 +52,6 @@ if ( ! is_singular( 'projects' ) ) :
 
   </div>
 </footer>
-<?php endif; ?>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

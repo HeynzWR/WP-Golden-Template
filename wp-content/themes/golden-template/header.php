@@ -42,10 +42,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 				}
 			}
 			
-			// Single project pages have a hero section, so use light logo.
-			if ( is_singular( 'projects' ) ) {
-				$has_hero_block = true;
-			}
 		}
 		
 	// Determine which logos to use based on whether there's a hero block.

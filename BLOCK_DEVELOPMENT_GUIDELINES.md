@@ -450,9 +450,9 @@ if ( $image ) {
 
 ### 2. Update Registration Files
 - [ ] Add to `/functions.php`: `require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/{block-name}/fields.php';`
-- [ ] Add to `/inc/blocks/block-registration.php`: Full block registration code
+- [ ] Add to `/inc/blocks/block-registration.php`: Full block registration code + add to `$block_styles` array (if custom CSS exists)
 - [ ] Add to `/inc/editor-customization.php`: `'acf/{block-name}'` in allowed blocks array
-- [ ] Add to `/inc/asset-loading.php`: CSS path in `$block_css_map` array (if custom CSS exists)
+- [ ] Add to `/functions.php`: `wp_enqueue_style()` call in `golden_template_scripts()` function (if custom CSS exists)
 
 ### 3. Verify Auto-Population
 - [ ] Image fields named: `image`, `background_image`, `photo`
@@ -516,10 +516,25 @@ require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/{block-name}/fields.php';
 'acf/{block-name}',
 ```
 
-### Smart Asset Loading Addition (if custom CSS)
+### Frontend CSS Loading Addition (if custom CSS)
+In `/functions.php`, add to `golden_template_scripts()` function:
 ```php
-// Add to $block_css_map array
-'acf/{block-name}' => '/blocks/{block-name}/style.css',
+// Block styles - Loads from blocks folder
+wp_enqueue_style(
+    'golden-template-{block-name}',
+    GOLDEN_TEMPLATE_THEME_URI . '/blocks/{block-name}/style.css',
+    array( 'golden-template-main' ), // Depends on main.css
+    golden_template_get_asset_version( 'blocks/{block-name}/style.css' )
+);
+```
+
+### Editor CSS Loading Addition (if custom CSS)
+In `/inc/blocks/block-registration.php`, add to `$block_styles` array in `golden_template_block_editor_assets()`:
+```php
+$block_styles = array(
+    'hero-section'     => '/blocks/hero-section/hero-section.css',
+    '{block-name}'     => '/blocks/{block-name}/style.css', // Add here
+);
 ```
 
 ---
@@ -711,7 +726,8 @@ grep -r "http://" blocks/{block-name}/  # Should be empty (no hardcoded URLs)
 - ✅ Verify block name matches registration
 
 **CSS not loading:**
-- ✅ Check `inc/smart-asset-loading.php` has correct path in `$block_css_map`
+- ✅ Check `functions.php` has `wp_enqueue_style()` call in `golden_template_scripts()` function
+- ✅ Check `inc/blocks/block-registration.php` has block added to `$block_styles` array (for editor)
 - ✅ Verify CSS file exists at specified path
 - ✅ Clear any caching plugins
 
@@ -2272,14 +2288,28 @@ In `/functions.php`:
 require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/block-name/fields.php';
 ```
 
-### Add to Smart Asset Loading
+### Add Frontend CSS Loading
 
-In `/inc/smart-asset-loading.php`:
+In `/functions.php`, add to `golden_template_scripts()` function:
 
 ```php
-$block_css_map = array(
-    'acf/hero-section' => '/blocks/hero-section/style.css',
-    'acf/block-name'   => '/blocks/block-name/style.css', // Add here
+// Block styles - Loads from blocks folder
+wp_enqueue_style(
+    'golden-template-block-name',
+    GOLDEN_TEMPLATE_THEME_URI . '/blocks/block-name/style.css',
+    array( 'golden-template-main' ), // Depends on main.css
+    golden_template_get_asset_version( 'blocks/block-name/style.css' )
+);
+```
+
+### Add Editor CSS Loading
+
+In `/inc/blocks/block-registration.php`, add to `$block_styles` array in `golden_template_block_editor_assets()`:
+
+```php
+$block_styles = array(
+    'hero-section'     => '/blocks/hero-section/hero-section.css',
+    'block-name'       => '/blocks/block-name/style.css', // Add here
 );
 ```
 
@@ -2706,11 +2736,22 @@ acf_register_block_type(
 require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/feature-card/fields.php';
 ```
 
-**inc/smart-asset-loading.php:**
+**functions.php** (add to `golden_template_scripts()` function):
 ```php
-$block_css_map = array(
-    // ... existing blocks
-    'acf/feature-card' => '/blocks/feature-card/style.css',
+// Feature Card styles
+wp_enqueue_style(
+    'golden-template-feature-card',
+    GOLDEN_TEMPLATE_THEME_URI . '/blocks/feature-card/style.css',
+    array( 'golden-template-main' ),
+    golden_template_get_asset_version( 'blocks/feature-card/style.css' )
+);
+```
+
+**inc/blocks/block-registration.php** (add to `$block_styles` array):
+```php
+$block_styles = array(
+    'hero-section'     => '/blocks/hero-section/hero-section.css',
+    'feature-card'     => '/blocks/feature-card/style.css', // Add here
 );
 ```
 

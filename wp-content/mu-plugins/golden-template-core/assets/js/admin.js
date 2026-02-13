@@ -10,13 +10,13 @@
 	/**
 	 * Handle image uploads using WordPress Media Library
 	 */
-	function initImageUploads() {
+		function initImageUploads() {
 		$('.golden-template-upload-btn').on('click', function(e) {
 			e.preventDefault();
 
 			var button = $(this);
 			var target = button.data('target');
-			var inputField = $('#golden-template_' + target);
+			var inputField = $('#golden_template_' + target);
 			var previewContainer = button.siblings('.golden-template-image-preview');
 
 			// Create a new media uploader instance for each upload
@@ -69,7 +69,7 @@
 
 			var button = $(this);
 			var target = button.data('target');
-			var inputField = $('#golden-template_' + target);
+			var inputField = $('#golden_template_' + target);
 			var previewContainer = button.siblings('.golden-template-image-preview');
 
 			// Clear the input field
@@ -129,16 +129,16 @@
 	/**
 	 * Update logo preview in sidebar
 	 */
-	function updateLogoPreview() {
+		function updateLogoPreview() {
 		// Update desktop logo preview
-		var logoDesktopId = $('#golden-template_logo_desktop').val();
+		var logoDesktopId = $('#golden_template_logo_desktop').val();
 		var desktopPreviewContainer = $('#logo-desktop-preview-display');
 		
 		if (!logoDesktopId) {
 			desktopPreviewContainer.html('<span style="color: #999;">No desktop logo</span>');
 		} else {
 			// Get the image from the main upload preview
-			var desktopMainPreview = $('#golden-template_logo_desktop').siblings('.golden-template-image-preview').find('img');
+			var desktopMainPreview = $('#golden_template_logo_desktop').siblings('.golden-template-image-preview').find('img');
 			if (desktopMainPreview.length) {
 				var clonedDesktopImg = desktopMainPreview.clone();
 				clonedDesktopImg.css({
@@ -151,14 +151,14 @@
 		}
 		
 		// Update mobile logo preview
-		var logoMobileId = $('#golden-template_logo_mobile').val();
+		var logoMobileId = $('#golden_template_logo_mobile').val();
 		var mobilePreviewContainer = $('#logo-mobile-preview-display');
 		
 		if (!logoMobileId) {
 			mobilePreviewContainer.html('<span style="color: #999;">No mobile logo</span>');
 		} else {
 			// Get the image from the main upload preview
-			var mobileMainPreview = $('#golden-template_logo_mobile').siblings('.golden-template-image-preview').find('img');
+			var mobileMainPreview = $('#golden_template_logo_mobile').siblings('.golden-template-image-preview').find('img');
 			if (mobileMainPreview.length) {
 				var clonedMobileImg = mobileMainPreview.clone();
 				clonedMobileImg.css({

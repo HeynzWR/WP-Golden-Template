@@ -346,46 +346,6 @@ function golden_template_scripts() {
         true
     );
 
-	// 12. Projects Listing styles (only on archive pages)
-	if ( is_post_type_archive( 'projects' ) || is_page_template( 'archive-projects.php' ) ) {
-		wp_enqueue_style(
-			'golden-template-projects-listing',
-			GOLDEN_TEMPLATE_THEME_URI . '/assets/css/frontend/projects-listing.css',
-			array( 'golden-template-main' ),
-			golden_template_get_asset_version( 'assets/css/frontend/projects-listing.css' )
-		);
-
-		// Projects Listing Script
-		wp_enqueue_script(
-			'golden-template-projects-filters',
-			GOLDEN_TEMPLATE_THEME_URI . '/assets/js/frontend/project-filters.js',
-			array( 'jquery' ),
-			golden_template_get_asset_version( 'assets/js/frontend/project-filters.js' ),
-			true
-		);
-	}
-
-	// 13. Single Project styles and scripts (only on single project pages)
-	if ( is_singular( 'projects' ) ) {
-		wp_enqueue_style(
-			'golden-template-single-project',
-			GOLDEN_TEMPLATE_THEME_URI . '/assets/css/frontend/single-project.css',
-			array( 'golden-template-main' ),
-			golden_template_get_asset_version( 'assets/css/frontend/single-project.css' )
-		);
-
-
-		// Enqueue Barba.js for single project pages
-		if ( ! wp_script_is( 'barba', 'enqueued' ) ) {
-			wp_enqueue_script(
-				'barba',
-				'https://cdn.jsdelivr.net/npm/@barba/core@2.9.7/dist/barba.umd.js',
-				array(),
-				'2.9.7',
-				true
-			);
-		}
-	}
 	// Enqueue header/navigation scripts.
 	wp_enqueue_script(
 		'golden-template-header',
@@ -399,7 +359,7 @@ function golden_template_scripts() {
 	wp_enqueue_script(
 		'golden-template-scripts',
 		GOLDEN_TEMPLATE_THEME_URI . '/assets/js/frontend/main.js',
-		array( 'jquery', 'scrolltrigger' ), // Depend on scrolltrigger (which depends on gsap)
+		array( 'jquery' ),
 		golden_template_get_asset_version( 'assets/js/frontend/main.js' ),
 		true
 	);
@@ -635,20 +595,6 @@ require_once GOLDEN_TEMPLATE_THEME_DIR . '/inc/blocks/block-registration.php';
  * Load individual block field configurations.
  */
 require_once GOLDEN_TEMPLATE_THEME_DIR . '/blocks/hero-section/fields.php';
-/**
- * Custom Post Types
- */
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/inc/post-types/projects.php';
-
-/**
- * Custom Taxonomies
- */
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/inc/taxonomies/projects-taxonomies.php';
-
-/**
- * CPT Fields
- */
-require_once GOLDEN_TEMPLATE_THEME_DIR . '/inc/fields/projects-cpt-fields.php';
 
 
 /**

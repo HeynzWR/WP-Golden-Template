@@ -57,54 +57,6 @@ function golden_template_extract_block_names( $blocks ) {
 	return $block_names;
 }
 
-/**
- * Check if GSAP should be loaded on current page
- *
- * @return bool True if GSAP should be loaded, false otherwise.
- */
-function golden_template_should_load_gsap() {
-	return true;
-}
-
-/**
- * Enqueue GSAP JavaScript
- */
-function golden_template_enqueue_gsap_js() {
-	// Check if GSAP should be loaded on this page
-	if ( ! golden_template_should_load_gsap() ) {
-		return;
-	}
-
-	if ( ! wp_script_is( 'gsap', 'enqueued' ) ) {
-		// Get file modification time for cache busting
-		$theme_dir = defined( 'GOLDEN_TEMPLATE_THEME_DIR' ) ? GOLDEN_TEMPLATE_THEME_DIR : get_template_directory();
-		$gsap_file = $theme_dir . '/assets/js/frontend/vendor/gsap.min.js';
-		$scroll_trigger_file = $theme_dir . '/assets/js/frontend/vendor/scroll-trigger.min.js';
-		$gsap_version = file_exists( $gsap_file ) ? filemtime( $gsap_file ) : '1.0.0';
-		$scroll_trigger_version = file_exists( $scroll_trigger_file ) ? filemtime( $scroll_trigger_file ) : '1.0.0';
-		
-		// Enqueue GSAP
-		wp_enqueue_script(
-			'gsap',
-			'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js',
-			array(),
-			$gsap_version,
-			true
-		);
-		
-		// Enqueue ScrollTrigger (depends on GSAP)
-		// Note: ScrollTrigger version must match GSAP version
-		if ( ! wp_script_is( 'scrolltrigger', 'enqueued' ) ) {
-			wp_enqueue_script(
-				'scrolltrigger',
-				'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js',
-				array( 'gsap' ),
-				$scroll_trigger_version,
-				true
-			);
-		}
-	}
-}
 
 /**
  * Enqueue AOS JavaScript
@@ -246,12 +198,6 @@ function golden_template_inline_critical_css() {
 	}
 }
 add_action( 'wp_head', 'golden_template_inline_critical_css', 1 );
-
-/**
- * Hook GSAP enqueue function
- * Priority 5 ensures it loads before main.js (default priority 10)
- */
-add_action( 'wp_enqueue_scripts', 'golden_template_enqueue_gsap_js', 5 );
 
 /**
  * Hook AOS enqueue function

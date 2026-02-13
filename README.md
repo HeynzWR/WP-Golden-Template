@@ -107,7 +107,7 @@ See [BLOCK_DEVELOPMENT_GUIDELINES.md](BLOCK_DEVELOPMENT_GUIDELINES.md) for compl
 
 Run coding standards check:
 ```bash
-./vendor/bin/phpcs --standard=WordPress-VIP-Go wp-content/themes/golden-template/
+./vendor/bin/phpcs --standard=WordPress-VIP-Minimum wp-content/themes/golden-template/
 ```
 
 ### Testing
@@ -138,16 +138,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines and workflow.
 - **Follow WordPress VIP standards** for all new code
 - **Use the block guidelines** for creating ACF blocks
 
-## 📝 License
-
-This template is licensed for internal use. Update this section with your specific license.
 
 ## 🆘 Support
 
 For issues or questions:
 1. Check the relevant documentation file
 2. Review [BLOCK_DEVELOPMENT_GUIDELINES.md](BLOCK_DEVELOPMENT_GUIDELINES.md) for block-specific questions
-3. Contact your development team lead
 
 ---
 

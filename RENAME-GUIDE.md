@@ -212,7 +212,7 @@ The script includes `export LC_ALL=C` and `export LANG=C` to handle this common 
 
 3. **Verify Code Quality**
    ```bash
-   ./vendor/bin/phpcs --standard=WordPress-VIP-Go wp-content/themes/your-project-name/
+   ./vendor/bin/phpcs --standard=WordPress-VIP-Minimum wp-content/themes/your-project-name/
    ```
 
 ### Optional Steps

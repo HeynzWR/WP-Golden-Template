@@ -159,7 +159,7 @@ if ( $next_block_index !== null ) {
 }
 
 // Build hero wrapper classes
-$hero_wrapper_class = .golden-template hero';
+$hero_wrapper_class = 'golden-template hero';
 if ( $has_scroll_block_next ) {
 	$hero_wrapper_class .= ' js-hero';
 }

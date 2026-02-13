@@ -1,0 +1,120 @@
+---
+alwaysApply: true
+---
+
+# WordPress Development Rules
+
+## Coding Standards
+- Follow WordPress VIP Coding Standards: https://github.com/Automattic/VIP-Coding-Standards
+- Run `phpcs --standard=WordPressVIPMinimum` on all PHP files before committing
+- Always sanitize all input using functions like `sanitize_text_field()`, `sanitize_email()`, etc.
+- Always escape all output using functions like `esc_html()`, `esc_attr()`, `esc_url()`, etc.
+- Use `$wpdb->prepare()` for all custom database queries to prevent SQL injection
+
+## WordPress Best Practices
+- Use hooks and filters properly; avoid inline logic in template files
+- No hardcoded URLs — always use WordPress functions like `home_url()`, `get_permalink()`, `site_url()`, `admin_url()`, etc.
+- Use WordPress Core APIs whenever possible instead of custom implementations
+- Follow the principle of separation of concerns: business logic should be in classes/functions, not in templates
+
+## Naming Conventions
+- **Files**: Use kebab-case (e.g., `custom-block.php`, `user-profile.php`)
+- **Functions**: Use snake_case with a unique prefix (e.g., `mytheme_register_block()`, `mytheme_enqueue_styles()`)
+- **Classes**: Use PascalCase with a unique prefix (e.g., `MyTheme_Helper`, `MyPlugin_Admin`)
+- **Constants**: Use ALL_CAPS with underscores (e.g., `MYTHEME_VERSION`, `MYPLUGIN_PATH`)
+- **Variables**: Use snake_case (e.g., `$post_id`, `$user_data`)
+
+## File Organization
+- Keep related functionality together in logical directories
+- Use meaningful file and directory names that describe their purpose
+- Maintain a clear separation between public-facing code and admin code
+
+## Block Development
+- **ALWAYS refer to [BLOCK_DEVELOPMENT_GUIDELINES.md](mdc:BLOCK_DEVELOPMENT_GUIDELINES.md) when creating new ACF blocks**
+- Follow the component templates and standard patterns outlined in the guidelines
+- Use the file creation checklist to ensure all required files are created
+- Apply the naming conventions and registration code templates from the guidelines
+- The block development guidelines contain comprehensive templates, patterns, and examples for creating production-ready blocks
+
+---
+
+# Git Workflow Rules
+
+## Branching Strategy
+- **NEVER push directly to `main`** — always use Pull Requests
+- Create feature branches using the format: `feature/descriptive-name` (e.g., `feature/user-authentication`)
+- Create fix branches using the format: `fix/descriptive-name` (e.g., `fix/layout-bug`)
+- Create chore branches using the format: `chore/descriptive-name` for maintenance tasks
+- Delete branches after they are merged
+
+## Commit Messages
+- Follow the Conventional Commits specification: https://www.conventionalcommits.org/en/v1.0.0/
+- Format: `<type>(<scope>): <description>`
+- **Types**: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `perf`
+- **Examples**:
+  - `feat: add user login functionality`
+  - `fix: resolve responsive layout bug on mobile`
+  - `docs: update README with installation steps`
+  - `refactor: simplify user authentication logic`
+  - `chore: update dependencies`
+
+## Pull Requests
+- PR titles must follow Conventional Commits format
+- Include a clear description of what changes were made and why
+- Reference related issues using `Closes #123` or `Fixes #456`
+- Ensure all tests pass before requesting review
+- Get approval before merging
+
+## CHANGELOG Management
+- After merging a PR to `main`, update `CHANGELOG.md` immediately
+- Follow the Keep a Changelog format: https://keepachangelog.com/
+- Include:
+  - The version number (use semantic versioning)
+  - The date of release
+  - The commit type and brief summary of changes
+  - Organize changes by type: Added, Changed, Deprecated, Removed, Fixed, Security
+- Example entry:
+  ```markdown
+  ## [1.2.0] - 2025-10-17
+  ### Added
+  - User login functionality with OAuth support
+  
+  ### Fixed
+  - Responsive layout bug on mobile devices
+  ```
+
+---
+
+# Code Quality Rules
+
+## When Creating/Editing PHP Files
+1. Always add proper PHPDoc blocks for classes, functions, and methods
+2. Check for linter errors using `phpcs --standard=WordPressVIPMinimum <file>`
+3. Validate that all user inputs are sanitized
+4. Validate that all outputs are escaped
+5. Ensure no hardcoded URLs or paths exist
+6. Verify proper use of hooks and filters
+
+## When Committing Code
+1. Verify the branch name follows the convention (feature/, fix/, chore/)
+2. Ensure the commit message follows Conventional Commits format
+3. Run phpcs on changed PHP files
+4. Verify no direct commits to `main` branch
+
+## When Creating Pull Requests
+1. Title must use Conventional Commits format
+2. Include a detailed description of changes
+3. Reference any related issues
+4. Remind to update CHANGELOG.md after merge
+
+---
+
+# Development Workflow Summary
+
+1. **Start Work**: Create branch with proper prefix (`feature/`, `fix/`, `chore/`)
+2. **Develop**: Follow WP coding standards, sanitize/escape, use proper naming
+3. **Commit**: Use Conventional Commits format
+4. **Test**: Run phpcs, check functionality
+5. **PR**: Create with proper title and description
+6. **Merge**: Get approval, merge to main
+7. **Document**: Update CHANGELOG.md immediately after merge

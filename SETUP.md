@@ -151,7 +151,7 @@ Run these checks to ensure everything is working:
 #### Check Code Standards
 
 ```bash
-./vendor/bin/phpcs --standard=WordPress-VIP-Go wp-content/themes/your-project-name/
+./vendor/bin/phpcs --standard=WordPress-VIP-Minimum wp-content/themes/your-project-name/
 ```
 
 Should show 0 ERRORS (warnings are acceptable).

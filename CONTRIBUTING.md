@@ -12,7 +12,7 @@ All code must follow [WordPress VIP Coding Standards](https://docs.wpvip.com/tec
 
 ```bash
 # Check your code
-./vendor/bin/phpcs --standard=WordPress-VIP-Go wp-content/themes/your-theme-name/
+./vendor/bin/phpcs --standard=WordPress-VIP-Minimum wp-content/themes/your-theme-name/
 
 # Should show 0 ERRORS
 # Warnings are acceptable but should be minimized
@@ -131,7 +131,7 @@ perf(images): optimize hero section images
 3. **Run Code Quality Checks**
    ```bash
    # PHPCS
-   ./vendor/bin/phpcs --standard=WordPress-VIP-Go wp-content/themes/your-theme/
+   ./vendor/bin/phpcs --standard=WordPress-VIP-Minimum wp-content/themes/your-theme/
    
    # No ERRORS should appear
    ```
